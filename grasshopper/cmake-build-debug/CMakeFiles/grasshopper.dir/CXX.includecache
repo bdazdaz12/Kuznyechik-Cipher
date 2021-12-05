@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/yevsyukof/CLionProjects/grasshopper/ByteArray.h
+cstdint
+-
+
+C:/Users/yevsyukof/CLionProjects/grasshopper/Kuznyechik.h
+vector
+-
+ByteArray.h
+C:/Users/yevsyukof/CLionProjects/grasshopper/ByteArray.h
+KuznyechikConstants.h
+C:/Users/yevsyukof/CLionProjects/grasshopper/KuznyechikConstants.h
+
+C:/Users/yevsyukof/CLionProjects/grasshopper/KuznyechikConstants.h
+
+C:/Users/yevsyukof/CLionProjects/grasshopper/main.cpp
+iostream
+-
+fstream
+-
+sstream
+-
+Kuznyechik.h
+C:/Users/yevsyukof/CLionProjects/grasshopper/Kuznyechik.h
+mycrypto.h
+C:/Users/yevsyukof/CLionProjects/grasshopper/mycrypto.h
+ByteArray.h
+C:/Users/yevsyukof/CLionProjects/grasshopper/ByteArray.h
+
+C:/Users/yevsyukof/CLionProjects/grasshopper/mycrypto.h
+
