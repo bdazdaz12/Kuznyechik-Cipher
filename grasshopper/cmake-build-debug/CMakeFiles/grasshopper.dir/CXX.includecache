@@ -10,6 +10,8 @@ C:/Users/yevsyukof/CLionProjects/grasshopper/ByteArray.h
 cstdint
 -
 
+C:/Users/yevsyukof/CLionProjects/grasshopper/KuznyechickLUT.h
+
 C:/Users/yevsyukof/CLionProjects/grasshopper/Kuznyechik.h
 vector
 -
@@ -17,6 +19,8 @@ ByteArray.h
 C:/Users/yevsyukof/CLionProjects/grasshopper/ByteArray.h
 KuznyechikConstants.h
 C:/Users/yevsyukof/CLionProjects/grasshopper/KuznyechikConstants.h
+KuznyechickLUT.h
+C:/Users/yevsyukof/CLionProjects/grasshopper/KuznyechickLUT.h
 
 C:/Users/yevsyukof/CLionProjects/grasshopper/KuznyechikConstants.h
 
@@ -27,12 +31,10 @@ fstream
 -
 sstream
 -
+chrono
+-
 Kuznyechik.h
 C:/Users/yevsyukof/CLionProjects/grasshopper/Kuznyechik.h
-mycrypto.h
-C:/Users/yevsyukof/CLionProjects/grasshopper/mycrypto.h
 ByteArray.h
 C:/Users/yevsyukof/CLionProjects/grasshopper/ByteArray.h
-
-C:/Users/yevsyukof/CLionProjects/grasshopper/mycrypto.h
 

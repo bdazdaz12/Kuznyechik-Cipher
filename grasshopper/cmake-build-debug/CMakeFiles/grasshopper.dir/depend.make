@@ -6,14 +6,13 @@ CMakeFiles/grasshopper.dir/ByteArray.cpp.obj: \
  ../ByteArray.h
 CMakeFiles/grasshopper.dir/Kuznyechik.cpp.obj: \
  ../ByteArray.h \
+ ../KuznyechickLUT.h \
  ../Kuznyechik.cpp \
  ../Kuznyechik.h \
  ../KuznyechikConstants.h
 CMakeFiles/grasshopper.dir/main.cpp.obj: \
  ../ByteArray.h \
+ ../KuznyechickLUT.h \
  ../Kuznyechik.h \
  ../KuznyechikConstants.h \
- ../main.cpp \
- ../mycrypto.h
-CMakeFiles/grasshopper.dir/mycrypto.cpp.obj: \
- ../mycrypto.cpp
+ ../main.cpp

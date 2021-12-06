@@ -12,7 +12,7 @@ public:
 
     ByteArray(size_t initial_size, uint8_t initial_value = 0);
 
-    ByteArray(const uint8_t *const init_byte_arr_ptr, size_t init_arr_size);
+    ByteArray(const uint8_t *init_byte_arr_ptr, size_t init_arr_size);
 
     // Move constructor
     // Copy constructor thus implicitly deleted
@@ -20,6 +20,8 @@ public:
     ByteArray(ByteArray &&other);
 
     ~ByteArray();
+
+    void absorb(uint8_t *absorb_byte_arr_ptr, size_t absorb_arr_size);
 
     // Move assigment operator
     // Object to move turn to null
@@ -31,6 +33,10 @@ public:
 
     uint8_t const *get_byte_arr_ptr() const {
         return byte_arr_ptr;
+    }
+
+    uint64_t * kuzn_cast() const { // не const
+        return reinterpret_cast<uint64_t *>(const_cast<uint8_t *>(byte_arr_ptr));
     }
 
     uint8_t &operator[](size_t index);

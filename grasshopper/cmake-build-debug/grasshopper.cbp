@@ -86,6 +86,9 @@
 		<Unit filename="C:/Users/yevsyukof/CLionProjects/grasshopper/ByteArray.h">
 			<Option target="grasshopper"/>
 		</Unit>
+		<Unit filename="C:/Users/yevsyukof/CLionProjects/grasshopper/KuznyechickLUT.h">
+			<Option target="grasshopper"/>
+		</Unit>
 		<Unit filename="C:/Users/yevsyukof/CLionProjects/grasshopper/Kuznyechik.cpp">
 			<Option target="grasshopper"/>
 		</Unit>
@@ -95,19 +98,7 @@
 		<Unit filename="C:/Users/yevsyukof/CLionProjects/grasshopper/KuznyechikConstants.h">
 			<Option target="grasshopper"/>
 		</Unit>
-		<Unit filename="C:/Users/yevsyukof/CLionProjects/grasshopper/crypto_utils.h">
-			<Option target="grasshopper"/>
-		</Unit>
 		<Unit filename="C:/Users/yevsyukof/CLionProjects/grasshopper/main.cpp">
-			<Option target="grasshopper"/>
-		</Unit>
-		<Unit filename="C:/Users/yevsyukof/CLionProjects/grasshopper/modes.h">
-			<Option target="grasshopper"/>
-		</Unit>
-		<Unit filename="C:/Users/yevsyukof/CLionProjects/grasshopper/mycrypto.cpp">
-			<Option target="grasshopper"/>
-		</Unit>
-		<Unit filename="C:/Users/yevsyukof/CLionProjects/grasshopper/mycrypto.h">
 			<Option target="grasshopper"/>
 		</Unit>
 		<Unit filename="C:/Users/yevsyukof/CLionProjects/grasshopper/CMakeLists.txt">

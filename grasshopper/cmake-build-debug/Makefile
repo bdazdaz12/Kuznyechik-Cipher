@@ -200,30 +200,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\grasshopper.dir\build.make CMakeFiles/grasshopper.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-mycrypto.obj: mycrypto.cpp.obj
-.PHONY : mycrypto.obj
-
-# target to build an object file
-mycrypto.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\grasshopper.dir\build.make CMakeFiles/grasshopper.dir/mycrypto.cpp.obj
-.PHONY : mycrypto.cpp.obj
-
-mycrypto.i: mycrypto.cpp.i
-.PHONY : mycrypto.i
-
-# target to preprocess a source file
-mycrypto.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\grasshopper.dir\build.make CMakeFiles/grasshopper.dir/mycrypto.cpp.i
-.PHONY : mycrypto.cpp.i
-
-mycrypto.s: mycrypto.cpp.s
-.PHONY : mycrypto.s
-
-# target to generate assembly for a file
-mycrypto.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\grasshopper.dir\build.make CMakeFiles/grasshopper.dir/mycrypto.cpp.s
-.PHONY : mycrypto.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -242,9 +218,6 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... mycrypto.obj
-	@echo ... mycrypto.i
-	@echo ... mycrypto.s
 .PHONY : help
 
 

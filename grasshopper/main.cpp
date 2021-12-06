@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <chrono>
 
 #include "Kuznyechik.h"
 #include "ByteArray.h"
@@ -47,18 +48,65 @@ std::string byte_arr_to_hex(const ByteArray &bb) {
     return result;
 }
 
+void print_block(const ByteArray &byteArray) {
+    for (int i = 0; i < byteArray.size(); ++i) {
+        std::cout << byteArray[i];
+    }
+}
+
+void init_read_buf(uint8_t read_buffer[], int buffer_size) {
+    for (int i = 0; i < buffer_size; ++i) {
+        read_buffer[i] = i % 256;
+    }
+}
+
+void fill_file(const std::string &in_file_name) {
+    FILE *out_file_ptr = std::fopen(in_file_name.c_str(), "wb");
+
+    constexpr int buffer_size = 32768;
+    uint8_t read_buffer[buffer_size];
+
+    init_read_buf(read_buffer, buffer_size);
+
+    for (int i = 0; i < 16000; ++i) {
+        fwrite(read_buffer, sizeof(uint8_t), buffer_size, out_file_ptr);
+    }
+}
+
 int main(int argc, char **argv) {
+//    fill_file("in_file.txt");
+
     ByteArray secret_key = hex_str_to_byte_arr(
             "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
 
     Kuznyechik kuznyechik_instance(secret_key);
 
-    std::string str = "77fedcba98765432100123456789abcd";
-    ByteArray in = hex_str_to_byte_arr(str);
-    ByteArray out;
-    kuznyechik_instance.encrypt_block(in, out);
+    auto start = std::chrono::steady_clock::now();
+    kuznyechik_instance.fast_encrypt_file("in_file.txt", "out_file.txt");
+    auto end = std::chrono::steady_clock::now();
 
-    kuznyechik_instance.decrypt_block(out, in);
+    auto interval = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+    printf("Encryption Time: %lld\n", interval.count());
 
-    std::cout << byte_arr_to_hex(in);
+
+//    kuznyechik_instance.decrypt_file("out_file.txt", "out_file_1.txt");
+
+
+
+
+
+
+
+
+
+
+//    std::string str = "77fedcba98765432100123456789abcd";
+//    ByteArray in = hex_str_to_byte_arr(str);
+//    ByteArray out;
+////    kuznyechik_instance.encrypt_block(in, out);
+//    kuznyechik_instance.encrypt_block(in, in);
+//
+//    kuznyechik_instance.decrypt_block(in, in);
+//
+//    std::cout << byte_arr_to_hex(in);
 }

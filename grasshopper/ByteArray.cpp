@@ -2,6 +2,7 @@
 
 #include <memory.h>
 #include <algorithm>
+#include <stdexcept>
 
 ByteArray::ByteArray(const size_t initial_size, const uint8_t initial_value)
         : byte_arr_size(initial_size) {
@@ -103,4 +104,12 @@ ByteArray &ByteArray::operator=(const ByteArray &source) {
         }
     }
     return *this;
+}
+
+void ByteArray::absorb(uint8_t *absorb_byte_arr_ptr, size_t absorb_arr_size) {
+//    if (byte_arr_ptr != nullptr) { // костыльчик
+//        throw std::invalid_argument("ByteArray.absorb(): prev array state is not null\n");
+//    }
+    byte_arr_ptr = absorb_byte_arr_ptr;
+    byte_arr_size = absorb_arr_size;
 }

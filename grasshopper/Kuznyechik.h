@@ -1,9 +1,9 @@
-#ifndef __KUZNYECHIK__
-#define __KUZNYECHIK__
+#pragma once
 
 #include <vector>
 #include "ByteArray.h"
 #include "KuznyechikConstants.h"
+#include "KuznyechickLUT.h"
 
 /*
  * @warning
@@ -23,9 +23,12 @@ public:
 
     void decrypt_file(const std::string &in_file_name, const std::string &out_file_name) const;
 
+    void fast_encrypt_block(const ByteArray &input_block, ByteArray &output_block) const;
+
+    void fast_encrypt_file(const std::string &in_file_name, const std::string &out_file_name) const;
+
+private:
 
 private:
     std::vector<ByteArray> round_keys;
 };
-
-#endif

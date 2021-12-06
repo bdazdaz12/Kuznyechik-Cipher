@@ -1,8 +1,8 @@
-#ifndef GRASSHOPPER_KUZNYECHIKCONSTANTS_H
-#define GRASSHOPPER_KUZNYECHIKCONSTANTS_H
+#pragma once
 
 #define ROUND_KEY_LENGTH 16 // в байтах
 #define NUMBER_OF_ROUNDS 10
+#define INPUT_BLOCK_LENGTH 16
 
 #define S_TABLE_SIZE 256
 
@@ -86,5 +86,3 @@ const static std::vector<uint16_t> linear_transform_coefficients = {
         148, 32, 133, 16, 194, 192, 1, 251, 1, 192,
         194, 16, 133, 32, 148, 1
 };
-
-#endif //GRASSHOPPER_KUZNYECHIKCONSTANTS_H
