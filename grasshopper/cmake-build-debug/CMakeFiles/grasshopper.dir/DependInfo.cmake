@@ -4,22 +4,14 @@ set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
 
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
-  )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/yevsyukof/CLionProjects/grasshopper/ByteArray.cpp" "C:/Users/yevsyukof/CLionProjects/grasshopper/cmake-build-debug/CMakeFiles/grasshopper.dir/ByteArray.cpp.obj"
-  "C:/Users/yevsyukof/CLionProjects/grasshopper/Kuznyechik.cpp" "C:/Users/yevsyukof/CLionProjects/grasshopper/cmake-build-debug/CMakeFiles/grasshopper.dir/Kuznyechik.cpp.obj"
-  "C:/Users/yevsyukof/CLionProjects/grasshopper/main.cpp" "C:/Users/yevsyukof/CLionProjects/grasshopper/cmake-build-debug/CMakeFiles/grasshopper.dir/main.cpp.obj"
-  )
-set(CMAKE_CXX_COMPILER_ID "GNU")
-
-# The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
   )
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/Kuznyechik.cpp" "CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o" "gcc" "CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o.d"
+  "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/Block64Array.cpp" "CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/Block64Array.cpp.o" "gcc" "CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/Block64Array.cpp.o.d"
+  "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteArray.cpp" "CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o" "gcc" "CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o.d"
+  "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/main.cpp" "CMakeFiles/grasshopper.dir/main.cpp.o" "gcc" "CMakeFiles/grasshopper.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.

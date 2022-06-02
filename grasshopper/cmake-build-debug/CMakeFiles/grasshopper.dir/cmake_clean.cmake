@@ -1,11 +1,14 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/grasshopper.dir/ByteArray.cpp.obj"
-  "CMakeFiles/grasshopper.dir/Kuznyechik.cpp.obj"
-  "CMakeFiles/grasshopper.dir/main.cpp.obj"
-  "grasshopper.exe"
-  "grasshopper.exe.manifest"
+  "CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o"
+  "CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o.d"
+  "CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/Block64Array.cpp.o"
+  "CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/Block64Array.cpp.o.d"
+  "CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o"
+  "CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o.d"
+  "CMakeFiles/grasshopper.dir/main.cpp.o"
+  "CMakeFiles/grasshopper.dir/main.cpp.o.d"
+  "grasshopper"
   "grasshopper.pdb"
-  "libgrasshopper.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

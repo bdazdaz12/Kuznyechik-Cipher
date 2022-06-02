@@ -1,3 +1,1 @@
-"C:\programming_soft\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\grasshopper.dir/objects.a
-C:\programming_soft\minGW64\mingw64\bin\ar.exe cr CMakeFiles\grasshopper.dir/objects.a @CMakeFiles\grasshopper.dir\objects1.rsp
-C:\programming_soft\minGW64\mingw64\bin\g++.exe -O2 -g -Wl,--whole-archive CMakeFiles\grasshopper.dir/objects.a -Wl,--no-whole-archive -o grasshopper.exe -Wl,--out-implib,libgrasshopper.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\grasshopper.dir\linklibs.rsp
+/usr/bin/c++ -O2 -g CMakeFiles/grasshopper.dir/main.cpp.o CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/Block64Array.cpp.o -o grasshopper 

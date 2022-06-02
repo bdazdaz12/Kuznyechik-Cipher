@@ -3,8 +3,9 @@
 #include <sstream>
 #include <chrono>
 
-#include "Kuznyechik.h"
-#include "ByteArray.h"
+#include "crypto/kuznyechik/Kuznyechik.h"
+#include "crypto/util/ByteArray.h"
+#include "crypto/kuznyechik/util/Block64Array.h"
 
 inline uint8_t from_hex_literal(char symbol) { // не оч функция канечна
     if (isdigit(symbol)) {
@@ -16,14 +17,14 @@ inline uint8_t from_hex_literal(char symbol) { // не оч функция ка�
     }
 }
 
-ByteArray hex_str_to_byte_arr(const std::string &hex_str) {
+Block64Array hex_str_to_byte_arr(const std::string &hex_str) {
     if ((hex_str.length() & 1) != 0) {
         std::cerr << "HEX WARNING\n";
     }
 
     int size = hex_str.size() / 2;
 
-    ByteArray result(size);
+    Block64Array result(size);
     for (int i = 0; i < size; i++) {
         result[i] = from_hex_literal(hex_str[2 * i]) << 4;
         result[i] += from_hex_literal(hex_str[2 * i + 1]);
@@ -37,7 +38,7 @@ inline char to_hex_literal(uint8_t number) {
     throw std::invalid_argument("to_hex_literal: " + std::to_string(number));
 }
 
-std::string byte_arr_to_hex(const ByteArray &bb) {
+std::string byte_arr_to_hex(const Block64Array &bb) {
     std::stringstream ss;
     for (int i = 0; i < bb.size(); i++) {
         ss << to_hex_literal(bb[i] >> 4);
@@ -46,12 +47,6 @@ std::string byte_arr_to_hex(const ByteArray &bb) {
     std::string result;
     getline(ss, result);
     return result;
-}
-
-void print_block(const ByteArray &byteArray) {
-    for (int i = 0; i < byteArray.size(); ++i) {
-        std::cout << byteArray[i];
-    }
 }
 
 void init_read_buf(uint8_t read_buffer[], int buffer_size) {
@@ -76,20 +71,20 @@ void fill_file(const std::string &in_file_name) {
 int main(int argc, char **argv) {
 //    fill_file("in_file.txt");
 
-    ByteArray secret_key = hex_str_to_byte_arr(
-            "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
-
-    Kuznyechik kuznyechik_instance(secret_key);
-
-    auto start = std::chrono::steady_clock::now();
-    kuznyechik_instance.fast_encrypt_file("in_file.txt", "out_file.txt");
-    auto end = std::chrono::steady_clock::now();
-
-    auto interval = std::chrono::duration_cast<std::chrono::seconds>(end - start);
-    printf("Encryption Time: %lld\n", interval.count());
-
-
-//    kuznyechik_instance.decrypt_file("out_file.txt", "out_file_1.txt");
+//    ByteArray secret_key = hex_str_to_byte_arr(
+//            "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
+//
+//    Kuznyechik kuznyechik_instance(secret_key);
+//
+//    auto start = std::chrono::steady_clock::now();
+//    kuznyechik_instance.encrypt_file("in_file.txt", "out_file.txt");
+//    auto end = std::chrono::steady_clock::now();
+//
+//    auto interval = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+//    printf("Encryption Time: %lld\n", interval.count());
+//
+//
+////    kuznyechik_instance.decrypt_file("out_file.txt", "out_file_1.txt");
 
 
 
@@ -101,8 +96,8 @@ int main(int argc, char **argv) {
 
 
 //    std::string str = "77fedcba98765432100123456789abcd";
-//    ByteArray in = hex_str_to_byte_arr(str);
-//    ByteArray out;
+//    Block64Array in = hex_str_to_byte_arr(str);
+//    Block64Array out;
 ////    kuznyechik_instance.encrypt_block(in, out);
 //    kuznyechik_instance.encrypt_block(in, in);
 //
