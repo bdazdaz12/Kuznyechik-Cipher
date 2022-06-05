@@ -155,7 +155,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/var/lib/snapd/snap/clion/190/bin/cmake/linux/bin/cmake"
+			"value" : "/var/lib/snapd/snap/clion/193/bin/cmake/linux/bin/cmake"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -167,7 +167,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/var/lib/snapd/snap/clion/190/bin/cmake/linux/bin/cpack"
+			"value" : "/var/lib/snapd/snap/clion/193/bin/cmake/linux/bin/cpack"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -179,7 +179,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/var/lib/snapd/snap/clion/190/bin/cmake/linux/bin/ctest"
+			"value" : "/var/lib/snapd/snap/clion/193/bin/cmake/linux/bin/ctest"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
@@ -967,7 +967,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/var/lib/snapd/snap/clion/190/bin/cmake/linux/share/cmake-3.22"
+			"value" : "/var/lib/snapd/snap/clion/193/bin/cmake/linux/share/cmake-3.22"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",

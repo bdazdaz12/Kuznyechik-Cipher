@@ -147,14 +147,8 @@ CMakeFiles/grasshopper.dir/main.cpp.o: \
  /usr/include/c++/12.1.0/bits/chrono.h /usr/include/c++/12.1.0/ratio \
  /usr/include/c++/12.1.0/limits /usr/include/c++/12.1.0/ctime \
  /usr/include/c++/12.1.0/bits/parse_numbers.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/Kuznyechik.h \
- /usr/include/c++/12.1.0/vector \
- /usr/include/c++/12.1.0/bits/stl_uninitialized.h \
- /usr/include/c++/12.1.0/bits/stl_vector.h \
- /usr/include/c++/12.1.0/bits/stl_bvector.h \
- /usr/include/c++/12.1.0/bits/vector.tcc \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/Block64Array.h \
  /usr/include/c++/12.1.0/memory \
+ /usr/include/c++/12.1.0/bits/stl_uninitialized.h \
  /usr/include/c++/12.1.0/bits/stl_tempbuf.h \
  /usr/include/c++/12.1.0/bits/stl_raw_storage_iter.h \
  /usr/include/c++/12.1.0/bits/align.h /usr/include/c++/12.1.0/bit \
@@ -189,7 +183,10 @@ CMakeFiles/grasshopper.dir/main.cpp.o: \
  /usr/include/c++/12.1.0/bits/uses_allocator_args.h \
  /usr/include/c++/12.1.0/pstl/glue_memory_defs.h \
  /usr/include/c++/12.1.0/pstl/execution_defs.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/Kuznyechik.h \
+ /usr/include/c++/12.1.0/vector /usr/include/c++/12.1.0/bits/stl_vector.h \
+ /usr/include/c++/12.1.0/bits/stl_bvector.h \
+ /usr/include/c++/12.1.0/bits/vector.tcc \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/ByteArray.h \
  /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/CipherConstants.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/KuznyechickLUT.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteArray.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/Block64Array.h
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/KuznyechickLUT.h

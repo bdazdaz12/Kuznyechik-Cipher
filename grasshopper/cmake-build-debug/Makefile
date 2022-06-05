@@ -48,10 +48,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /var/lib/snapd/snap/clion/190/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /var/lib/snapd/snap/clion/193/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /var/lib/snapd/snap/clion/190/bin/cmake/linux/bin/cmake -E rm -f
+RM = /var/lib/snapd/snap/clion/193/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/gr
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/var/lib/snapd/snap/clion/190/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/var/lib/snapd/snap/clion/193/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/var/lib/snapd/snap/clion/190/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/var/lib/snapd/snap/clion/193/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -129,6 +129,30 @@ grasshopper/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/build
 .PHONY : grasshopper/fast
 
+crypto/_streebog/StreebogHash.o: crypto/_streebog/StreebogHash.cpp.o
+.PHONY : crypto/_streebog/StreebogHash.o
+
+# target to build an object file
+crypto/_streebog/StreebogHash.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o
+.PHONY : crypto/_streebog/StreebogHash.cpp.o
+
+crypto/_streebog/StreebogHash.i: crypto/_streebog/StreebogHash.cpp.i
+.PHONY : crypto/_streebog/StreebogHash.i
+
+# target to preprocess a source file
+crypto/_streebog/StreebogHash.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.i
+.PHONY : crypto/_streebog/StreebogHash.cpp.i
+
+crypto/_streebog/StreebogHash.s: crypto/_streebog/StreebogHash.cpp.s
+.PHONY : crypto/_streebog/StreebogHash.s
+
+# target to generate assembly for a file
+crypto/_streebog/StreebogHash.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.s
+.PHONY : crypto/_streebog/StreebogHash.cpp.s
+
 crypto/kuznyechik/Kuznyechik.o: crypto/kuznyechik/Kuznyechik.cpp.o
 .PHONY : crypto/kuznyechik/Kuznyechik.o
 
@@ -153,53 +177,29 @@ crypto/kuznyechik/Kuznyechik.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.s
 .PHONY : crypto/kuznyechik/Kuznyechik.cpp.s
 
-crypto/kuznyechik/util/Block64Array.o: crypto/kuznyechik/util/Block64Array.cpp.o
-.PHONY : crypto/kuznyechik/util/Block64Array.o
+crypto/kuznyechik/util/ByteArray.o: crypto/kuznyechik/util/ByteArray.cpp.o
+.PHONY : crypto/kuznyechik/util/ByteArray.o
 
 # target to build an object file
-crypto/kuznyechik/util/Block64Array.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/Block64Array.cpp.o
-.PHONY : crypto/kuznyechik/util/Block64Array.cpp.o
+crypto/kuznyechik/util/ByteArray.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o
+.PHONY : crypto/kuznyechik/util/ByteArray.cpp.o
 
-crypto/kuznyechik/util/Block64Array.i: crypto/kuznyechik/util/Block64Array.cpp.i
-.PHONY : crypto/kuznyechik/util/Block64Array.i
-
-# target to preprocess a source file
-crypto/kuznyechik/util/Block64Array.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/Block64Array.cpp.i
-.PHONY : crypto/kuznyechik/util/Block64Array.cpp.i
-
-crypto/kuznyechik/util/Block64Array.s: crypto/kuznyechik/util/Block64Array.cpp.s
-.PHONY : crypto/kuznyechik/util/Block64Array.s
-
-# target to generate assembly for a file
-crypto/kuznyechik/util/Block64Array.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/Block64Array.cpp.s
-.PHONY : crypto/kuznyechik/util/Block64Array.cpp.s
-
-crypto/util/ByteArray.o: crypto/util/ByteArray.cpp.o
-.PHONY : crypto/util/ByteArray.o
-
-# target to build an object file
-crypto/util/ByteArray.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o
-.PHONY : crypto/util/ByteArray.cpp.o
-
-crypto/util/ByteArray.i: crypto/util/ByteArray.cpp.i
-.PHONY : crypto/util/ByteArray.i
+crypto/kuznyechik/util/ByteArray.i: crypto/kuznyechik/util/ByteArray.cpp.i
+.PHONY : crypto/kuznyechik/util/ByteArray.i
 
 # target to preprocess a source file
-crypto/util/ByteArray.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.i
-.PHONY : crypto/util/ByteArray.cpp.i
+crypto/kuznyechik/util/ByteArray.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.i
+.PHONY : crypto/kuznyechik/util/ByteArray.cpp.i
 
-crypto/util/ByteArray.s: crypto/util/ByteArray.cpp.s
-.PHONY : crypto/util/ByteArray.s
+crypto/kuznyechik/util/ByteArray.s: crypto/kuznyechik/util/ByteArray.cpp.s
+.PHONY : crypto/kuznyechik/util/ByteArray.s
 
 # target to generate assembly for a file
-crypto/util/ByteArray.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.s
-.PHONY : crypto/util/ByteArray.cpp.s
+crypto/kuznyechik/util/ByteArray.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.s
+.PHONY : crypto/kuznyechik/util/ByteArray.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -234,15 +234,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... grasshopper"
+	@echo "... crypto/_streebog/StreebogHash.o"
+	@echo "... crypto/_streebog/StreebogHash.i"
+	@echo "... crypto/_streebog/StreebogHash.s"
 	@echo "... crypto/kuznyechik/Kuznyechik.o"
 	@echo "... crypto/kuznyechik/Kuznyechik.i"
 	@echo "... crypto/kuznyechik/Kuznyechik.s"
-	@echo "... crypto/kuznyechik/util/Block64Array.o"
-	@echo "... crypto/kuznyechik/util/Block64Array.i"
-	@echo "... crypto/kuznyechik/util/Block64Array.s"
-	@echo "... crypto/util/ByteArray.o"
-	@echo "... crypto/util/ByteArray.i"
-	@echo "... crypto/util/ByteArray.s"
+	@echo "... crypto/kuznyechik/util/ByteArray.o"
+	@echo "... crypto/kuznyechik/util/ByteArray.i"
+	@echo "... crypto/kuznyechik/util/ByteArray.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

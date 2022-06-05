@@ -1,1 +1,1 @@
-/usr/bin/c++ -O2 -g CMakeFiles/grasshopper.dir/main.cpp.o CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/Block64Array.cpp.o -o grasshopper 
+/usr/bin/c++ -O2 -g CMakeFiles/grasshopper.dir/main.cpp.o CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o -o grasshopper 

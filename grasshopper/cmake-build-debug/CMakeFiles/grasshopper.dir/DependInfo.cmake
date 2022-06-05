@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/StreebogHash.cpp" "CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o" "gcc" "CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o.d"
   "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/Kuznyechik.cpp" "CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o" "gcc" "CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o.d"
-  "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/Block64Array.cpp" "CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/Block64Array.cpp.o" "gcc" "CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/Block64Array.cpp.o.d"
-  "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteArray.cpp" "CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o" "gcc" "CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o.d"
+  "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/ByteArray.cpp" "CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o" "gcc" "CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o.d"
   "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/main.cpp" "CMakeFiles/grasshopper.dir/main.cpp.o" "gcc" "CMakeFiles/grasshopper.dir/main.cpp.o.d"
   )
 
