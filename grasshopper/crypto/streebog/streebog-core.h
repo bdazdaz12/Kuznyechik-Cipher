@@ -13,7 +13,11 @@
 
 #include "streebog-ref.h"
 
-ALIGN(16) union uint512_u {
+//ALIGN(16) union uint512_u {
+//    unsigned long long QWORD[8];
+//} uint512_u;
+
+extern union uint512_u {
     unsigned long long QWORD[8];
 } uint512_u;
 
@@ -28,7 +32,7 @@ ALIGN(16) typedef struct GOST34112012Context {
     ALIGN(16) union uint512_u Sigma;
     size_t bufsize;
     unsigned int digest_size;
-} GOST34112012Context;
+} StreebogContext;
 
 #define BSWAP64(x) \
     (((x & 0xFF00000000000000ULL) >> 56) | \
@@ -40,26 +44,10 @@ ALIGN(16) typedef struct GOST34112012Context {
      ((x & 0x000000000000FF00ULL) << 40) | \
      ((x & 0x00000000000000FFULL) << 56))
 
-void GOST34112012Cleanup(GOST34112012Context *CTX) {
-    memset(CTX, 0x00, sizeof(GOST34112012Context));
-}
 
-void GOST34112012Init(GOST34112012Context *CTX, const unsigned int digest_size) {
-    unsigned int i;
 
-    memset(CTX, 0x00, sizeof(GOST34112012Context));
-    CTX->digest_size = digest_size;
 
-    for (i = 0; i < 8; i++) {
-        if (digest_size == 256) {
-            CTX->h.QWORD[i] = 0x0101010101010101ULL;
-        } else {
-            CTX->h.QWORD[i] = 0x00ULL;
-        }
-    }
-}
-
-static inline void pad(GOST34112012Context *CTX) {
+static inline void pad(StreebogContext *CTX) {
     if (CTX->bufsize > 63) {
         return;
     }
@@ -149,7 +137,7 @@ static void g(union uint512_u *h, const union uint512_u *N, const unsigned char 
 #endif
 }
 
-static inline void stage2(GOST34112012Context *CTX, const unsigned char *data) {
+static inline void stage2(StreebogContext *CTX, const unsigned char *data) {
     union uint512_u m;
 
     memcpy(&m, data, sizeof(m));
@@ -159,7 +147,7 @@ static inline void stage2(GOST34112012Context *CTX, const unsigned char *data) {
     add512(&(CTX->Sigma), &m, &(CTX->Sigma));
 }
 
-static inline void stage3(GOST34112012Context *CTX) {
+static inline void stage3(StreebogContext *CTX) {
     ALIGN(16) union uint512_u buf = {{0}};
 
 #ifndef __GOST3411_BIG_ENDIAN__
@@ -182,48 +170,3 @@ static inline void stage3(GOST34112012Context *CTX) {
     memcpy(&(CTX->hash), &(CTX->h), sizeof uint512_u);
 }
 
-void GOST34112012Update(GOST34112012Context *CTX, const unsigned char *data, size_t len) {
-    size_t chunksize;
-
-    if (CTX->bufsize) {
-        chunksize = 64 - CTX->bufsize;
-        if (chunksize > len)
-            chunksize = len;
-
-        memcpy(&CTX->buffer[CTX->bufsize], data, chunksize);
-
-        CTX->bufsize += chunksize;
-        len -= chunksize;
-        data += chunksize;
-
-        if (CTX->bufsize == 64) {
-            stage2(CTX, CTX->buffer);
-
-            CTX->bufsize = 0;
-        }
-    }
-
-    while (len > 63) {
-        stage2(CTX, data);
-
-        data += 64;
-        len -= 64;
-    }
-
-    if (len) {
-        memcpy(&CTX->buffer, data, len);
-        CTX->bufsize = len;
-    }
-}
-
-void GOST34112012Final(GOST34112012Context *CTX, unsigned char *digest) {
-    stage3(CTX);
-
-    CTX->bufsize = 0;
-
-    if (CTX->digest_size == 256) {
-        memcpy(digest, &(CTX->hash.QWORD[4]), 32);
-    } else {
-        memcpy(digest, &(CTX->hash.QWORD[0]), 64);
-    }
-}

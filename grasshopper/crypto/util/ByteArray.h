@@ -57,5 +57,5 @@ public:
 private:
     uint64_t *arrayPtr;
     size_t capacity{}; ///@details сколько uint64_t выделенно под хранение
-    size_t arraySize{};
+    size_t arraySize{}; /// количество байт в массиве
 };

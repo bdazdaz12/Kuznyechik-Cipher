@@ -256,8 +256,10 @@ CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o: ../crypto/kuznyec
 CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: ../crypto/streebog/StreebogHash.cpp \
   /usr/include/stdc-predef.h \
   ../crypto/streebog/StreebogHash.h \
-  ../crypto/streebog/streebog-enter.h \
-  /usr/include/err.h \
+  ../crypto/util/ByteArray.h \
+  /usr/include/c++/12.1.0/cstdint \
+  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/os_defines.h \
   /usr/include/features.h \
   /usr/include/features-time64.h \
   /usr/include/bits/wordsize.h \
@@ -266,12 +268,6 @@ CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: ../crypto/streebo
   /usr/include/bits/long-double.h \
   /usr/include/gnu/stubs.h \
   /usr/include/gnu/stubs-64.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include/stdarg.h \
-  /usr/include/bits/floatn.h \
-  /usr/include/bits/floatn-common.h \
-  /usr/include/c++/12.1.0/cstdint \
-  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/c++config.h \
-  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/os_defines.h \
   /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/cpu_defines.h \
   /usr/include/c++/12.1.0/pstl/pstl_config.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include/stdint.h \
@@ -283,22 +279,13 @@ CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: ../crypto/streebo
   /usr/include/bits/wchar.h \
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-uintn.h \
-  /usr/include/c++/12.1.0/cstdio \
-  /usr/include/stdio.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include/stddef.h \
-  /usr/include/bits/types/__fpos_t.h \
-  /usr/include/bits/types/__mbstate_t.h \
-  /usr/include/bits/types/__fpos64_t.h \
-  /usr/include/bits/types/__FILE.h \
-  /usr/include/bits/types/FILE.h \
-  /usr/include/bits/types/struct_FILE.h \
-  /usr/include/bits/types/cookie_io_functions_t.h \
-  /usr/include/bits/stdio_lim.h \
-  /usr/include/bits/stdio.h \
   /usr/include/c++/12.1.0/cstdlib \
   /usr/include/stdlib.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include/stddef.h \
   /usr/include/bits/waitflags.h \
   /usr/include/bits/waitstatus.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/floatn-common.h \
   /usr/include/bits/types/locale_t.h \
   /usr/include/bits/types/__locale_t.h \
   /usr/include/sys/types.h \
@@ -327,41 +314,79 @@ CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: ../crypto/streebo
   /usr/include/bits/stdlib-bsearch.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/c++/12.1.0/bits/std_abs.h \
-  /usr/include/c++/12.1.0/cstring \
-  /usr/include/string.h \
-  /usr/include/strings.h \
-  /usr/include/sysexits.h \
-  /usr/include/unistd.h \
-  /usr/include/bits/posix_opt.h \
-  /usr/include/bits/environments.h \
-  /usr/include/bits/confname.h \
-  /usr/include/bits/getopt_posix.h \
-  /usr/include/bits/getopt_core.h \
-  /usr/include/bits/unistd_ext.h \
-  /usr/include/linux/close_range.h \
-  ../crypto/streebog/streebog-core.h \
-  ../crypto/streebog/streebog-config.h \
-  ../crypto/streebog/streebog-ref.h \
-  ../crypto/streebog/streebog-consts.h \
-  ../crypto/streebog/streebog-precalc.h \
-  /usr/include/sys/resource.h \
-  /usr/include/bits/resource.h \
-  /usr/include/bits/types/struct_rusage.h \
-  /usr/include/c++/12.1.0/ctime \
-  /usr/include/time.h \
-  /usr/include/bits/time.h \
-  /usr/include/bits/timex.h \
-  /usr/include/bits/types/struct_tm.h \
-  /usr/include/bits/types/struct_itimerspec.h \
-  /usr/include/c++/12.1.0/semaphore \
-  /usr/include/c++/12.1.0/bits/semaphore_base.h \
-  /usr/include/c++/12.1.0/bits/atomic_base.h \
-  /usr/include/c++/12.1.0/bits/atomic_lockfree_defines.h \
-  /usr/include/c++/12.1.0/bits/move.h \
+  /usr/include/c++/12.1.0/memory \
+  /usr/include/c++/12.1.0/bits/stl_algobase.h \
+  /usr/include/c++/12.1.0/bits/functexcept.h \
+  /usr/include/c++/12.1.0/bits/exception_defines.h \
+  /usr/include/c++/12.1.0/bits/cpp_type_traits.h \
+  /usr/include/c++/12.1.0/ext/type_traits.h \
+  /usr/include/c++/12.1.0/ext/numeric_traits.h \
+  /usr/include/c++/12.1.0/bits/stl_pair.h \
   /usr/include/c++/12.1.0/type_traits \
-  /usr/include/c++/12.1.0/bits/atomic_wait.h \
+  /usr/include/c++/12.1.0/bits/move.h \
+  /usr/include/c++/12.1.0/bits/utility.h \
+  /usr/include/c++/12.1.0/compare \
+  /usr/include/c++/12.1.0/concepts \
+  /usr/include/c++/12.1.0/bits/stl_iterator_base_types.h \
+  /usr/include/c++/12.1.0/bits/iterator_concepts.h \
+  /usr/include/c++/12.1.0/bits/ptr_traits.h \
+  /usr/include/c++/12.1.0/bits/ranges_cmp.h \
+  /usr/include/c++/12.1.0/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/12.1.0/bits/concept_check.h \
+  /usr/include/c++/12.1.0/debug/assertions.h \
+  /usr/include/c++/12.1.0/bits/stl_iterator.h \
+  /usr/include/c++/12.1.0/new \
+  /usr/include/c++/12.1.0/bits/exception.h \
+  /usr/include/c++/12.1.0/bits/stl_construct.h \
+  /usr/include/c++/12.1.0/debug/debug.h \
+  /usr/include/c++/12.1.0/bits/predefined_ops.h \
+  /usr/include/c++/12.1.0/bits/allocator.h \
+  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/c++allocator.h \
+  /usr/include/c++/12.1.0/bits/new_allocator.h \
+  /usr/include/c++/12.1.0/bits/memoryfwd.h \
+  /usr/include/c++/12.1.0/bits/stl_uninitialized.h \
+  /usr/include/c++/12.1.0/ext/alloc_traits.h \
+  /usr/include/c++/12.1.0/bits/alloc_traits.h \
+  /usr/include/c++/12.1.0/bits/stl_tempbuf.h \
+  /usr/include/c++/12.1.0/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/12.1.0/bits/align.h \
+  /usr/include/c++/12.1.0/bit \
+  /usr/include/c++/12.1.0/bits/uses_allocator.h \
+  /usr/include/c++/12.1.0/bits/unique_ptr.h \
+  /usr/include/c++/12.1.0/tuple \
+  /usr/include/c++/12.1.0/bits/invoke.h \
+  /usr/include/c++/12.1.0/bits/stl_function.h \
+  /usr/include/c++/12.1.0/backward/binders.h \
   /usr/include/c++/12.1.0/bits/functional_hash.h \
   /usr/include/c++/12.1.0/bits/hash_bytes.h \
+  /usr/include/c++/12.1.0/ostream \
+  /usr/include/c++/12.1.0/ios \
+  /usr/include/c++/12.1.0/iosfwd \
+  /usr/include/c++/12.1.0/bits/stringfwd.h \
+  /usr/include/c++/12.1.0/bits/postypes.h \
+  /usr/include/c++/12.1.0/cwchar \
+  /usr/include/wchar.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include/stdarg.h \
+  /usr/include/bits/types/wint_t.h \
+  /usr/include/bits/types/mbstate_t.h \
+  /usr/include/bits/types/__mbstate_t.h \
+  /usr/include/bits/types/__FILE.h \
+  /usr/include/bits/types/FILE.h \
+  /usr/include/c++/12.1.0/exception \
+  /usr/include/c++/12.1.0/bits/exception_ptr.h \
+  /usr/include/c++/12.1.0/bits/cxxabi_init_exception.h \
+  /usr/include/c++/12.1.0/typeinfo \
+  /usr/include/c++/12.1.0/bits/nested_exception.h \
+  /usr/include/c++/12.1.0/bits/char_traits.h \
+  /usr/include/c++/12.1.0/bits/localefwd.h \
+  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/c++locale.h \
+  /usr/include/c++/12.1.0/clocale \
+  /usr/include/locale.h \
+  /usr/include/bits/locale.h \
+  /usr/include/c++/12.1.0/cctype \
+  /usr/include/ctype.h \
+  /usr/include/c++/12.1.0/bits/ios_base.h \
+  /usr/include/c++/12.1.0/ext/atomicity.h \
   /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/gthr.h \
   /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/gthr-default.h \
   /usr/include/pthread.h \
@@ -369,12 +394,38 @@ CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: ../crypto/streebo
   /usr/include/bits/sched.h \
   /usr/include/bits/types/struct_sched_param.h \
   /usr/include/bits/cpu-set.h \
+  /usr/include/time.h \
+  /usr/include/bits/time.h \
+  /usr/include/bits/timex.h \
+  /usr/include/bits/types/struct_tm.h \
+  /usr/include/bits/types/struct_itimerspec.h \
   /usr/include/bits/setjmp.h \
   /usr/include/bits/types/struct___jmp_buf_tag.h \
   /usr/include/bits/pthread_stack_min-dynamic.h \
-  /usr/include/c++/12.1.0/ext/numeric_traits.h \
-  /usr/include/c++/12.1.0/bits/cpp_type_traits.h \
-  /usr/include/c++/12.1.0/ext/type_traits.h \
+  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/atomic_word.h \
+  /usr/include/sys/single_threaded.h \
+  /usr/include/c++/12.1.0/bits/locale_classes.h \
+  /usr/include/c++/12.1.0/string \
+  /usr/include/c++/12.1.0/bits/ostream_insert.h \
+  /usr/include/c++/12.1.0/bits/cxxabi_forced.h \
+  /usr/include/c++/12.1.0/bits/refwrap.h \
+  /usr/include/c++/12.1.0/bits/range_access.h \
+  /usr/include/c++/12.1.0/initializer_list \
+  /usr/include/c++/12.1.0/bits/basic_string.h \
+  /usr/include/c++/12.1.0/string_view \
+  /usr/include/c++/12.1.0/bits/ranges_base.h \
+  /usr/include/c++/12.1.0/bits/max_size_type.h \
+  /usr/include/c++/12.1.0/numbers \
+  /usr/include/c++/12.1.0/bits/string_view.tcc \
+  /usr/include/c++/12.1.0/ext/string_conversions.h \
+  /usr/include/c++/12.1.0/cstdio \
+  /usr/include/stdio.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/types/cookie_io_functions_t.h \
+  /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdio.h \
   /usr/include/c++/12.1.0/cerrno \
   /usr/include/errno.h \
   /usr/include/bits/errno.h \
@@ -383,116 +434,12 @@ CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: ../crypto/streebo
   /usr/include/asm-generic/errno.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/bits/types/error_t.h \
-  /usr/include/c++/12.1.0/climits \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed/limits.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed/syslimits.h \
-  /usr/include/limits.h \
-  /usr/include/bits/posix1_lim.h \
-  /usr/include/bits/local_lim.h \
-  /usr/include/linux/limits.h \
-  /usr/include/bits/posix2_lim.h \
-  /usr/include/bits/xopen_lim.h \
-  /usr/include/bits/uio_lim.h \
-  /usr/include/syscall.h \
-  /usr/include/sys/syscall.h \
-  /usr/include/asm/unistd.h \
-  /usr/include/asm/unistd_64.h \
-  /usr/include/bits/syscall.h \
-  /usr/include/c++/12.1.0/bits/functexcept.h \
-  /usr/include/c++/12.1.0/bits/exception_defines.h \
-  /usr/include/c++/12.1.0/bits/std_mutex.h \
-  /usr/include/c++/12.1.0/system_error \
-  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/error_constants.h \
-  /usr/include/c++/12.1.0/iosfwd \
-  /usr/include/c++/12.1.0/bits/stringfwd.h \
-  /usr/include/c++/12.1.0/bits/memoryfwd.h \
-  /usr/include/c++/12.1.0/bits/postypes.h \
-  /usr/include/c++/12.1.0/cwchar \
-  /usr/include/wchar.h \
-  /usr/include/bits/types/wint_t.h \
-  /usr/include/bits/types/mbstate_t.h \
-  /usr/include/c++/12.1.0/stdexcept \
-  /usr/include/c++/12.1.0/exception \
-  /usr/include/c++/12.1.0/bits/exception.h \
-  /usr/include/c++/12.1.0/bits/exception_ptr.h \
-  /usr/include/c++/12.1.0/bits/cxxabi_init_exception.h \
-  /usr/include/c++/12.1.0/typeinfo \
-  /usr/include/c++/12.1.0/new \
-  /usr/include/c++/12.1.0/bits/nested_exception.h \
-  /usr/include/c++/12.1.0/string \
-  /usr/include/c++/12.1.0/bits/char_traits.h \
-  /usr/include/c++/12.1.0/compare \
-  /usr/include/c++/12.1.0/concepts \
-  /usr/include/c++/12.1.0/bits/stl_construct.h \
-  /usr/include/c++/12.1.0/bits/stl_iterator_base_types.h \
-  /usr/include/c++/12.1.0/bits/iterator_concepts.h \
-  /usr/include/c++/12.1.0/bits/ptr_traits.h \
-  /usr/include/c++/12.1.0/bits/ranges_cmp.h \
-  /usr/include/c++/12.1.0/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/12.1.0/bits/concept_check.h \
-  /usr/include/c++/12.1.0/debug/assertions.h \
-  /usr/include/c++/12.1.0/bits/allocator.h \
-  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/c++allocator.h \
-  /usr/include/c++/12.1.0/bits/new_allocator.h \
-  /usr/include/c++/12.1.0/bits/localefwd.h \
-  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/c++locale.h \
-  /usr/include/c++/12.1.0/clocale \
-  /usr/include/locale.h \
-  /usr/include/bits/locale.h \
-  /usr/include/c++/12.1.0/cctype \
-  /usr/include/ctype.h \
-  /usr/include/c++/12.1.0/bits/ostream_insert.h \
-  /usr/include/c++/12.1.0/bits/cxxabi_forced.h \
-  /usr/include/c++/12.1.0/bits/stl_iterator.h \
-  /usr/include/c++/12.1.0/bits/stl_function.h \
-  /usr/include/c++/12.1.0/backward/binders.h \
-  /usr/include/c++/12.1.0/bits/stl_algobase.h \
-  /usr/include/c++/12.1.0/bits/stl_pair.h \
-  /usr/include/c++/12.1.0/bits/utility.h \
-  /usr/include/c++/12.1.0/debug/debug.h \
-  /usr/include/c++/12.1.0/bits/predefined_ops.h \
-  /usr/include/c++/12.1.0/bits/refwrap.h \
-  /usr/include/c++/12.1.0/bits/invoke.h \
-  /usr/include/c++/12.1.0/bits/range_access.h \
-  /usr/include/c++/12.1.0/initializer_list \
-  /usr/include/c++/12.1.0/bits/basic_string.h \
-  /usr/include/c++/12.1.0/ext/atomicity.h \
-  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/atomic_word.h \
-  /usr/include/sys/single_threaded.h \
-  /usr/include/c++/12.1.0/ext/alloc_traits.h \
-  /usr/include/c++/12.1.0/bits/alloc_traits.h \
-  /usr/include/c++/12.1.0/string_view \
-  /usr/include/c++/12.1.0/bits/ranges_base.h \
-  /usr/include/c++/12.1.0/bits/max_size_type.h \
-  /usr/include/c++/12.1.0/numbers \
-  /usr/include/c++/12.1.0/bits/string_view.tcc \
-  /usr/include/c++/12.1.0/ext/string_conversions.h \
   /usr/include/c++/12.1.0/bits/charconv.h \
   /usr/include/c++/12.1.0/bits/basic_string.tcc \
-  /usr/include/c++/12.1.0/bits/chrono.h \
-  /usr/include/c++/12.1.0/ratio \
-  /usr/include/c++/12.1.0/limits \
-  /usr/include/c++/12.1.0/bits/parse_numbers.h \
-  /usr/include/c++/12.1.0/bits/atomic_timed_wait.h \
-  /usr/include/c++/12.1.0/bits/this_thread_sleep.h \
-  /usr/include/sys/time.h \
-  /usr/include/semaphore.h \
-  /usr/include/bits/semaphore.h \
-  ../crypto/util/ByteArray.h \
-  /usr/include/c++/12.1.0/memory \
-  /usr/include/c++/12.1.0/bits/stl_uninitialized.h \
-  /usr/include/c++/12.1.0/bits/stl_tempbuf.h \
-  /usr/include/c++/12.1.0/bits/stl_raw_storage_iter.h \
-  /usr/include/c++/12.1.0/bits/align.h \
-  /usr/include/c++/12.1.0/bit \
-  /usr/include/c++/12.1.0/bits/uses_allocator.h \
-  /usr/include/c++/12.1.0/bits/unique_ptr.h \
-  /usr/include/c++/12.1.0/tuple \
-  /usr/include/c++/12.1.0/ostream \
-  /usr/include/c++/12.1.0/ios \
-  /usr/include/c++/12.1.0/bits/ios_base.h \
-  /usr/include/c++/12.1.0/bits/locale_classes.h \
   /usr/include/c++/12.1.0/bits/locale_classes.tcc \
+  /usr/include/c++/12.1.0/system_error \
+  /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/error_constants.h \
+  /usr/include/c++/12.1.0/stdexcept \
   /usr/include/c++/12.1.0/streambuf \
   /usr/include/c++/12.1.0/bits/streambuf.tcc \
   /usr/include/c++/12.1.0/bits/basic_ios.h \
@@ -512,6 +459,33 @@ CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: ../crypto/streebo
   /usr/include/c++/12.1.0/ext/aligned_buffer.h \
   /usr/include/c++/12.1.0/ext/concurrence.h \
   /usr/include/c++/12.1.0/bits/shared_ptr_atomic.h \
+  /usr/include/c++/12.1.0/bits/atomic_base.h \
+  /usr/include/c++/12.1.0/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/12.1.0/bits/atomic_wait.h \
+  /usr/include/c++/12.1.0/climits \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed/limits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h \
+  /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/uio_lim.h \
+  /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h \
+  /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h \
+  /usr/include/bits/getopt_posix.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/unistd_ext.h \
+  /usr/include/linux/close_range.h \
+  /usr/include/syscall.h \
+  /usr/include/sys/syscall.h \
+  /usr/include/asm/unistd.h \
+  /usr/include/asm/unistd_64.h \
+  /usr/include/bits/syscall.h \
+  /usr/include/c++/12.1.0/bits/std_mutex.h \
   /usr/include/c++/12.1.0/backward/auto_ptr.h \
   /usr/include/c++/12.1.0/bits/ranges_uninitialized.h \
   /usr/include/c++/12.1.0/bits/ranges_algobase.h \
@@ -524,7 +498,17 @@ CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: ../crypto/streebo
   /usr/include/c++/12.1.0/bits/vector.tcc \
   /usr/include/c++/12.1.0/iostream \
   /usr/include/c++/12.1.0/istream \
-  /usr/include/c++/12.1.0/bits/istream.tcc
+  /usr/include/c++/12.1.0/bits/istream.tcc \
+  ../crypto/streebog/streebog-core.h \
+  ../crypto/streebog/streebog-config.h \
+  /usr/include/c++/12.1.0/cstring \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  ../crypto/streebog/streebog-ref.h \
+  ../crypto/streebog/streebog-consts.h \
+  ../crypto/streebog/streebog-precalc.h \
+  /usr/include/err.h \
+  /usr/include/sysexits.h
 
 CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o: ../crypto/util/ByteArray.cpp \
   /usr/include/stdc-predef.h \
@@ -1045,34 +1029,29 @@ CMakeFiles/grasshopper.dir/main.cpp.o: ../main.cpp \
   ../crypto/util/ByteArray.h \
   ../crypto/kuznyechik/KuznyechickLUT.h \
   ../crypto/streebog/StreebogHash.h \
-  ../crypto/streebog/streebog-enter.h \
-  /usr/include/err.h \
+  ../crypto/streebog/streebog-core.h \
+  ../crypto/streebog/streebog-config.h \
   /usr/include/c++/12.1.0/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
-  /usr/include/sysexits.h \
-  ../crypto/streebog/streebog-core.h \
-  ../crypto/streebog/streebog-config.h \
   ../crypto/streebog/streebog-ref.h \
   ../crypto/streebog/streebog-consts.h \
-  ../crypto/streebog/streebog-precalc.h \
-  /usr/include/sys/resource.h \
-  /usr/include/bits/resource.h \
-  /usr/include/bits/types/struct_rusage.h \
-  /usr/include/c++/12.1.0/semaphore \
-  /usr/include/c++/12.1.0/bits/semaphore_base.h \
-  /usr/include/c++/12.1.0/bits/atomic_timed_wait.h \
-  /usr/include/c++/12.1.0/bits/this_thread_sleep.h \
-  /usr/include/sys/time.h \
-  /usr/include/semaphore.h \
-  /usr/include/bits/semaphore.h
+  ../crypto/streebog/streebog-precalc.h
 
+
+/usr/include/c++/12.1.0/bits/parse_numbers.h:
+
+/usr/include/c++/12.1.0/ctime:
+
+/usr/include/c++/12.1.0/bits/chrono.h:
 
 /usr/include/c++/12.1.0/chrono:
 
 /usr/include/c++/12.1.0/bits/sstream.tcc:
 
 /usr/include/c++/12.1.0/sstream:
+
+/usr/include/c++/12.1.0/bits/fstream.tcc:
 
 /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/c++io.h:
 
@@ -1092,35 +1071,11 @@ CMakeFiles/grasshopper.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/memory.h:
 
-/usr/include/bits/semaphore.h:
-
-/usr/include/sys/time.h:
-
-/usr/include/c++/12.1.0/bits/atomic_timed_wait.h:
-
-/usr/include/c++/12.1.0/bits/parse_numbers.h:
-
-/usr/include/c++/12.1.0/bits/chrono.h:
-
-/usr/include/c++/12.1.0/bits/semaphore_base.h:
-
-/usr/include/c++/12.1.0/semaphore:
-
-/usr/include/c++/12.1.0/ctime:
-
-/usr/include/c++/12.1.0/bits/fstream.tcc:
-
-/usr/include/bits/types/struct_rusage.h:
-
-/usr/include/bits/resource.h:
+/usr/include/err.h:
 
 ../crypto/streebog/streebog-precalc.h:
 
 ../crypto/streebog/streebog-ref.h:
-
-/usr/include/err.h:
-
-../crypto/streebog/streebog-enter.h:
 
 ../crypto/streebog/StreebogHash.h:
 
@@ -1193,8 +1148,6 @@ CMakeFiles/grasshopper.dir/main.cpp.o: ../main.cpp \
 /usr/include/bits/wctype-wchar.h:
 
 /usr/include/c++/12.1.0/bits/uniform_int_dist.h:
-
-/usr/include/sys/resource.h:
 
 /usr/include/wctype.h:
 
@@ -1400,9 +1353,9 @@ CMakeFiles/grasshopper.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/stdint.h:
 
-/usr/include/c++/12.1.0/bits/stl_algo.h:
-
 /usr/include/c++/12.1.0/limits:
+
+/usr/include/c++/12.1.0/bits/stl_algo.h:
 
 /usr/include/bits/confname.h:
 
@@ -1483,8 +1436,6 @@ CMakeFiles/grasshopper.dir/main.cpp.o: ../main.cpp \
 /usr/include/bits/types/__mbstate_t.h:
 
 /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/gthr.h:
-
-/usr/include/semaphore.h:
 
 /usr/include/c++/12.1.0/x86_64-pc-linux-gnu/bits/error_constants.h:
 
@@ -1613,8 +1564,6 @@ CMakeFiles/grasshopper.dir/main.cpp.o: ../main.cpp \
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/c++/12.1.0/bits/stl_tempbuf.h:
-
-/usr/include/c++/12.1.0/bits/this_thread_sleep.h:
 
 /usr/include/c++/12.1.0/ostream:
 

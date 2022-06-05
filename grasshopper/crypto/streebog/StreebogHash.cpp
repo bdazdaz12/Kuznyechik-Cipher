@@ -3,6 +3,7 @@
  * @brief  GOST 34.11-2012 hash function with 512/256 bits digest.
  */
 
+#include "StreebogHash.h"
 #include <err.h>
 #include <cstdint>
 #include <cstdio>
@@ -11,32 +12,19 @@
 #include <sysexits.h>
 #include <unistd.h>
 
-#include "streebog-core.h"
-
-/* For benchmarking */
-#include <sys/resource.h>
-#include <ctime>
-#include <sys/types.h>
-#include <semaphore>
-
 #define READ_BUFFER_SIZE 65536
 
 #define TEST_BLOCK_LEN 8192
 
-//#ifdef __GOST3411_HAS_SSE2__
-//#define TEST_BLOCK_COUNT 50000
-//#else
-#define TEST_BLOCK_COUNT 10000
-//#endif
 
 #define DEFAULT_DIGEST_SIZE 512
 #define ALGNAME "GOST R 34.11-2012"
 
-static GOST34112012Context *CTX;
+//static StreebogContext *CTX;
 
-uint8_t digest[64];
-unsigned char hexdigest[129];
-unsigned int digest_size = DEFAULT_DIGEST_SIZE;
+//uint8_t digest[64];
+//unsigned char hexdigest[129];
+//unsigned int digest_size = DEFAULT_DIGEST_SIZE;
 
 const union uint512_u GOSTTestInput = {
 #ifndef __GOST3411_BIG_ENDIAN__
@@ -64,6 +52,70 @@ const union uint512_u GOSTTestInput = {
 #endif
 };
 
+void CleanupCTX(StreebogContext *CTX) {
+    memset(CTX, 0x00, sizeof(StreebogContext));
+}
+
+void InitCTX(StreebogContext *CTX, const unsigned int digest_size) {
+    unsigned int i;
+
+    memset(CTX, 0x00, sizeof(StreebogContext));
+    CTX->digest_size = digest_size;
+
+    for (i = 0; i < 8; i++) {
+        if (digest_size == 256) {
+            CTX->h.QWORD[i] = 0x0101010101010101ULL;
+        } else {
+            CTX->h.QWORD[i] = 0x00ULL;
+        }
+    }
+}
+
+void UpdateCTX(StreebogContext *CTX, const unsigned char *data, size_t len) {
+    size_t chunksize;
+
+    if (CTX->bufsize) {
+        chunksize = 64 - CTX->bufsize;
+        if (chunksize > len)
+            chunksize = len;
+
+        memcpy(&CTX->buffer[CTX->bufsize], data, chunksize);
+
+        CTX->bufsize += chunksize;
+        len -= chunksize;
+        data += chunksize;
+
+        if (CTX->bufsize == 64) {
+            stage2(CTX, CTX->buffer);
+
+            CTX->bufsize = 0;
+        }
+    }
+
+    while (len > 63) {
+        stage2(CTX, data);
+
+        data += 64;
+        len -= 64;
+    }
+
+    if (len) {
+        memcpy(&CTX->buffer, data, len);
+        CTX->bufsize = len;
+    }
+}
+
+void FinalCTX(StreebogContext *CTX, unsigned char *digest) {
+    stage3(CTX);
+
+    CTX->bufsize = 0;
+
+    if (CTX->digest_size == 256) {
+        memcpy(digest, &(CTX->hash.QWORD[4]), 32);
+    } else {
+        memcpy(digest, &(CTX->hash.QWORD[0]), 64);
+    }
+}
 
 static void *memalloc(const size_t size) {
     void *p;
@@ -104,60 +156,24 @@ static void convert_to_hex(unsigned char *in, unsigned char *out, size_t len,
     }
 }
 
-static void onfile(FILE *file) {
-    unsigned char *buffer;
-    size_t len;
-
-    GOST34112012Init(CTX, digest_size);
-
-    buffer = (unsigned char*) memalloc((size_t) READ_BUFFER_SIZE);
-
-    while ((len = fread(buffer, (size_t) 1, (size_t) READ_BUFFER_SIZE, file)))
-        GOST34112012Update(CTX, buffer, len);
-
-    if (ferror(file))
-        err(EX_IOERR, nullptr);
-
-    free(buffer);
-
-    GOST34112012Final(CTX, &digest[0]);
-}
-
-static void onstring(const unsigned char *string) {
-    unsigned char *buf __attribute__((aligned(16)));
-    size_t size;
-
-    GOST34112012Init(CTX, digest_size);
-
-    size = strnlen((const char *) string, (size_t) 4096);
-    buf = (unsigned char*) memalloc(size);
-    memcpy(buf, string, size);
-
-    GOST34112012Update(CTX, buf, size);
-
-    GOST34112012Final(CTX, &digest[0]);
-
-}
-
-
 /**
  * @arg digestSize - размер в битах считаемого хэша
 */
-static uint8_t *calculateStringHash(unsigned char* const string, unsigned int digestSize) {
-    digest_size = digestSize;
+static uint8_t *calculateStringHash(StreebogContext *CTX, unsigned char *const string, unsigned int digestSize) {
+    uint8_t digest[64];
 
     unsigned char *buf __attribute__((aligned(16)));
     size_t size;
 
-    GOST34112012Init(CTX, digest_size);
+    InitCTX(CTX, digestSize);
 
     size = strnlen((const char *) string, (size_t) 4096);
-    buf = (unsigned char*) memalloc(size);
+    buf = (unsigned char *) memalloc(size);
     memcpy(buf, string, size);
     {
-        GOST34112012Update(CTX, buf, size);
-        GOST34112012Final(CTX, &digest[0]);
-        GOST34112012Cleanup(CTX);
+        UpdateCTX(CTX, buf, size);
+        FinalCTX(CTX, &digest[0]);
+        CleanupCTX(CTX);
     }
 
     auto *calculatedHash = new uint8_t[digestSize / 8];
@@ -166,83 +182,28 @@ static uint8_t *calculateStringHash(unsigned char* const string, unsigned int di
     return calculatedHash;
 }
 
-static void testing(const unsigned int eflag) {
-    printf("M1: 012345678901234567890123456789012345678901234567890123456789012\n");
+static uint8_t *calculateByteArrayHash(StreebogContext *CTX, const ByteArray &byteArray, unsigned int digestSize) {
+    uint8_t digest[64];
 
-    GOST34112012Init(CTX, 512);
-
-    memcpy(CTX->buffer, &GOSTTestInput, sizeof uint512_u);
-    CTX->bufsize = 63;
-
-    GOST34112012Final(CTX, &digest[0]);
-
-    convert_to_hex(&digest[0], &hexdigest[0], 64, eflag);
-    printf("%s 512 bit digest (M1): 0x%s\n", ALGNAME, hexdigest);
-
-    GOST34112012Cleanup(CTX);
-
-    GOST34112012Init(CTX, 256);
-
-    memcpy(CTX->buffer, &GOSTTestInput, sizeof uint512_u);
-    CTX->bufsize = 63;
-
-    GOST34112012Final(CTX, &digest[0]);
-
-    convert_to_hex(&digest[0], &hexdigest[0], 32, eflag);
-    printf("%s 256 bit digest (M1): 0x%s\n", ALGNAME, hexdigest);
-
-    GOST34112012Cleanup(CTX);
-
-    exit(EXIT_SUCCESS);
-}
-
-static void benchmark(const unsigned int eflag) {
-    struct rusage before, after;
-    struct timeval total;
-    float seconds;
-    unsigned char block[TEST_BLOCK_LEN] __attribute__((aligned(16)));
-    unsigned int i;
-
-    printf("%s timing benchmark.\n", ALGNAME);
-    printf("Digesting %d %d-byte blocks with 512 bits digest...\n",
-           TEST_BLOCK_COUNT, TEST_BLOCK_LEN);
-    fflush(stdout);
-
-    for (i = 0; i < TEST_BLOCK_LEN; i++)
-        block[i] = (unsigned char) (i & 0xff);
-
-    getrusage(RUSAGE_SELF, &before);
-
-    GOST34112012Init(CTX, 512);
-    for (i = 0; i < TEST_BLOCK_COUNT; i++)
-        GOST34112012Update(CTX, block, (size_t) TEST_BLOCK_LEN);
-    GOST34112012Final(CTX, digest);
-
-    getrusage(RUSAGE_SELF, &after);
-    timersub(&after.ru_utime, &before.ru_utime, &total);
-    seconds = (float) total.tv_sec + (float) total.tv_usec / 1000000;
-
-    convert_to_hex(digest, hexdigest, 64, eflag);
-
-    printf("Digest = %s", hexdigest);
-    printf("\nTime = %f seconds\n", seconds);
-    printf("Speed = %.2f bytes/second\n",
-           (float) TEST_BLOCK_LEN * (float) TEST_BLOCK_COUNT / seconds);
-
-    exit(EXIT_SUCCESS);
-}
-
-static void shutdown() {
-    if (CTX != nullptr) {
-        GOST34112012Cleanup(CTX);
+    InitCTX(CTX, digestSize);
+    {
+        UpdateCTX(CTX, byteArray.getArrayPtr(), byteArray.size());
+        FinalCTX(CTX, &digest[0]);
+        CleanupCTX(CTX);
     }
+
+    auto *calculatedHash = new uint8_t[digestSize / 8];
+    memcpy(calculatedHash, &digest[0], digestSize / 8);
+
+    return calculatedHash;
 }
+
 
 #ifdef SUPERCOP
 #include "crypto_hash.h"
 
 int crypto_hash(unsigned char *out, const unsigned char *in, unsigned long long inlen) {
-    CTX = memalloc(sizeof(GOST34112012Context));
+    CTX = memalloc(sizeof(StreebogContext));
 
     GOST34112012Init(CTX, 512);
     GOST34112012Update(CTX, in, (size_t) inlen);
@@ -250,153 +211,84 @@ int crypto_hash(unsigned char *out, const unsigned char *in, unsigned long long 
 
     return 0;
 }
-#else
-
-//int streebog(int argc, char *argv[]) {
-//    int ch;
-//    unsigned char uflag, qflag, rflag, eflag;
-//    unsigned char excode;
-//    FILE *f;
-//
-//    excode = EXIT_SUCCESS;
-//    atexit(shutdown);
-//
-//    CTX = (GOST34112012Context*) memalloc(sizeof(GOST34112012Context));
-//
-//    qflag = 0;
-//    rflag = 0;
-//    uflag = 0;
-//    eflag = 0;
-//
-//    while ((ch = getopt(argc, argv, "25bhvqrs:te")) != -1) {
-//        switch (ch) {
-//            case 'b': {
-//                benchmark(eflag);
-//                break;
-//            }
-//            case '2': {
-//                digest_size = 256;
-//                break;
-//            }
-//            case '5': {
-//                digest_size = 512;
-//                break;
-//            }
-//            case 'q': {
-//                qflag = 1;
-//                break;
-//            }
-//            case 's': {
-//                onstring((unsigned char *) optarg);
-//
-//                if (digest_size == 256) {
-//                    convert_to_hex(digest, hexdigest, 32, eflag);
-//                } else {
-//                    convert_to_hex(digest, hexdigest, 64, eflag);
-//                }
-//
-//                if (qflag) {
-//                    printf("%s\n", hexdigest);
-//                } else if (rflag) {
-//                    printf("%s \"%s\"\n", hexdigest, optarg);
-//                } else {
-//                    printf("%s (\"%s\") = %s\n", ALGNAME, optarg, hexdigest);
-//                }
-//                uflag = 1;
-//                break;
-//            }
-//            case 'r': {
-//                rflag = 1;
-//                break;
-//            }
-//            case 't': {
-//                testing(eflag);
-//                break;
-//            }
-//            case 'e': {
-//                eflag = 1;
-//                break;
-//            }
-//        }
-//    }
-//
-//    argc -= optind;
-//    argv += optind;
-//
-//    if (*argv) {
-//        do {
-//            if ((f = fopen(*argv, "rb")) == nullptr) {
-//                warn("%s", *argv);
-//                excode = EX_OSFILE;
-//                continue;
-//            }
-//            onfile(f);
-//            fclose(f);
-//            uflag = 1;
-//
-//            if (digest_size == 256) {
-//                convert_to_hex(digest, hexdigest, 32, eflag);
-//            } else {
-//                convert_to_hex(digest, hexdigest, 64, eflag);
-//            }
-//
-//            if (qflag) {
-//                printf("%s\n", hexdigest);
-//            } else if (rflag) {
-//                printf("%s \"%s\"\n", hexdigest, *argv);
-//            } else {
-//                printf("%s (%s) = %s\n", ALGNAME, *argv, hexdigest);
-//            }
-//        } while (*++argv);
-//    } else if (!uflag) {
-//        onfile(stdin);
-//
-//        if (digest_size == 256) {
-//            convert_to_hex(digest, hexdigest, 32, eflag);
-//        } else {
-//            convert_to_hex(digest, hexdigest, 64, eflag);
-//        }
-//
-//        printf("%s\n", hexdigest);
-//
-//        uflag = 1;
-//    }
-//
-//    return excode;
-//}
-
 #endif
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-#include "StreebogHash.h"
+
 
 std::uint8_t *StreebogHash::calculateHash(unsigned char *str) const {
-    return calculateStringHash(str, digestSize);
+    return calculateStringHash(CTX, str, digestSize);
 }
 
 
-std::string StreebogHash::convertToHex(std::uint8_t *digestSource) const {
+std::string StreebogHash::convertToHex(std::uint8_t *digest) const {
     unsigned int i;
     char ch[3];
-    unsigned char hexdigest[129];
-
-    int digestLen = digestSize / 8;
+    char hexdigest[129];
 
     memset(hexdigest, 0, 129);
 
-    /* eflag is set when little-endian output requested */
-//    if (eflag) reverse_order(digest, digestSize);
-
-    for (i = 0; i < digestSize; i++) {
-        sprintf(ch, "%02x", (unsigned char) digestSource[i]);
+    for (i = 0; i < digestSize / 8; i++) {
+        sprintf(ch, "%02x", (unsigned char) digest[i]);
         memcpy(&hexdigest[i * 2], ch, 2);
     }
 
-    std::string ans = reinterpret_cast<const char *>(hexdigest);
+    std::string ans(hexdigest);
     return ans;
 }
 
 std::uint8_t *StreebogHash::calculateHash(const ByteArray &in) const {
-    return calculateStringHash(reinterpret_cast<unsigned char*>(in.getArrayPtr()), digestSize);
+    return calculateByteArrayHash(CTX, in, digestSize);
 }
+
+StreebogHash::StreebogHash(int digestSize) {
+    if(digestSize != 256 && digestSize != 512) {
+        std::cerr << "Streebog: задан недопустимый размер дайджеста" << std::endl;
+        exit(1);
+    }
+
+    this->CTX = (GOST34112012Context *) memalloc(sizeof(GOST34112012Context));
+    this->digestSize = digestSize;
+}
+
+StreebogHash::~StreebogHash() {
+    if (CTX != nullptr) {
+        CleanupCTX(CTX);
+    }
+}
+
+//std::uint8_t *StreebogHash::hashStr(const unsigned char *string) {
+//    auto *digest = new uint8_t[64];
+//    char hexdigest[129];
+//
+//    unsigned char *buf __attribute__((aligned(16)));
+//    size_t size;
+//
+//    InitCTX(CTX, digestSize);
+//
+//    size = strnlen((const char *) string, (size_t) 4096);
+//    buf = (unsigned char *) memalloc(size);
+//    memcpy(buf, string, size);
+//
+//    {
+//        UpdateCTX(CTX, buf, size);
+//        FinalCTX(CTX, &digest[0]);
+//        CleanupCTX(CTX);
+//    }
+//
+//
+//    if (digestSize == 256) {
+//        convert_to_hex(digest, reinterpret_cast<unsigned char *>(hexdigest), 32, 0);
+//    } else {
+//        convert_to_hex(digest, reinterpret_cast<unsigned char *>(hexdigest), 64, 0);
+//    }
+//
+//
+//    std::string str(hexdigest);
+//    printf("%s\n", hexdigest);
+//
+//    std::cout << std::endl << str;
+//
+//    return nullptr;
+//}

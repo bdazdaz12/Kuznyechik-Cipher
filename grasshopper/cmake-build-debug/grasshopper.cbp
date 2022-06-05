@@ -109,9 +109,6 @@
 		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-core.h">
 			<Option target="grasshopper"/>
 		</Unit>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-enter.h">
-			<Option target="grasshopper"/>
-		</Unit>
 		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-precalc.h">
 			<Option target="grasshopper"/>
 		</Unit>

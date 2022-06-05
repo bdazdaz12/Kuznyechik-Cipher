@@ -190,4 +190,11 @@ CMakeFiles/grasshopper.dir/main.cpp.o: \
  /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/CipherConstants.h \
  /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/../util/ByteArray.h \
  /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/KuznyechickLUT.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/StreebogHash.h
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/StreebogHash.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-core.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-config.h \
+ /usr/include/c++/12.1.0/cstring /usr/include/string.h \
+ /usr/include/strings.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-ref.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-consts.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-precalc.h

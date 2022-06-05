@@ -49,6 +49,17 @@ std::string byte_arr_to_hex(const ByteArray &bb) {
     return result;
 }
 
+std::string byte_arr_to_hex(const uint8_t *arr, size_t arrSize) {
+    std::stringstream ss;
+    for (int i = 0; i < arrSize; i++) {
+        ss << to_hex_literal(arr[i] >> 4);
+        ss << to_hex_literal(arr[i] & 0xF);
+    }
+    std::string result;
+    getline(ss, result);
+    return result;
+}
+
 void init_read_buf(uint8_t read_buffer[], int buffer_size) {
     for (int i = 0; i < buffer_size; ++i) {
         read_buffer[i] = i % 256;
@@ -71,11 +82,16 @@ void fill_file(const std::string &in_file_name) {
 int main(int argc, char **argv) {
 //    fill_file("in_file.txt");
 
-    ByteArray secret_key = hex_str_to_byte_arr(
-            "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
-//
-//    std::cout << secret_key.size() << std::endl;
-//
+//    ByteArray secret_key = hex_str_to_byte_arr(
+//            "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
+
+
+    auto str = "012345678901234567890123456789012345678901234567890123456789012";
+    StreebogHash streebogHash(512);
+    std::cout << streebogHash.convertToHex(streebogHash.calculateHash((unsigned char *) str)) << std::endl;
+
+
+
 //    Kuznyechik kuznyechik_instance(secret_key);
 //
 //    ByteArray in = hex_str_to_byte_arr("1122334455667700ffeeddccbbaa9988");
@@ -94,13 +110,6 @@ int main(int argc, char **argv) {
 //
 //
 ////    kuznyechik_instance.decrypt_file("out_file.txt", "out_file_1.txt");
-
-
-
-
-
-
-
 
 
 
