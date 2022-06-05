@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o.d"
   "CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o"
   "CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o.d"
+  "CMakeFiles/grasshopper.dir/crypto/util/ByteFlow.cpp.o"
+  "CMakeFiles/grasshopper.dir/crypto/util/ByteFlow.cpp.o.d"
   "CMakeFiles/grasshopper.dir/main.cpp.o"
   "CMakeFiles/grasshopper.dir/main.cpp.o.d"
   "grasshopper"

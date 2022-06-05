@@ -201,6 +201,30 @@ crypto/util/ByteArray.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.s
 .PHONY : crypto/util/ByteArray.cpp.s
 
+crypto/util/ByteFlow.o: crypto/util/ByteFlow.cpp.o
+.PHONY : crypto/util/ByteFlow.o
+
+# target to build an object file
+crypto/util/ByteFlow.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/util/ByteFlow.cpp.o
+.PHONY : crypto/util/ByteFlow.cpp.o
+
+crypto/util/ByteFlow.i: crypto/util/ByteFlow.cpp.i
+.PHONY : crypto/util/ByteFlow.i
+
+# target to preprocess a source file
+crypto/util/ByteFlow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/util/ByteFlow.cpp.i
+.PHONY : crypto/util/ByteFlow.cpp.i
+
+crypto/util/ByteFlow.s: crypto/util/ByteFlow.cpp.s
+.PHONY : crypto/util/ByteFlow.s
+
+# target to generate assembly for a file
+crypto/util/ByteFlow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/util/ByteFlow.cpp.s
+.PHONY : crypto/util/ByteFlow.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -243,6 +267,9 @@ help:
 	@echo "... crypto/util/ByteArray.o"
 	@echo "... crypto/util/ByteArray.i"
 	@echo "... crypto/util/ByteArray.s"
+	@echo "... crypto/util/ByteFlow.o"
+	@echo "... crypto/util/ByteFlow.i"
+	@echo "... crypto/util/ByteFlow.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -5,6 +5,7 @@
 #include <string>
 
 #include "streebog-core.h"
+#include "../util/ByteFlow.h"
 
 class StreebogHash {
 public:
@@ -13,18 +14,29 @@ public:
     ~StreebogHash();
 
     /** @details Возвращает память, которую нужно чистить */
-    std::uint8_t *calculateHash(unsigned char *str) const;
+    std::shared_ptr<uint8_t[]> calculateHash(unsigned char *str) const;
 
-    std::uint8_t *calculateHash(const ByteArray &in) const;
+    std::shared_ptr<uint8_t[]> calculateHash(FILE *file) const;
 
-//    void calculateHash(std::string);
+    std::shared_ptr<uint8_t[]> calculateHash(const ByteArray &byteArray) const;
+
+    std::string convertToHex(const std::shared_ptr<uint8_t[]> &ptr) const;
 
     int getDigestSize() const {
         return digestSize;
     }
 
-    std::string convertToHex(std::uint8_t *digest) const;
+
+    /**
+     * @arg secretKey - это K из описания HMAC
+    */
+    ByteArray calculateHMAC(const ByteArray &secretKey, const std::string &text);
+
+    ByteArray calculateHMAC(const ByteArray &secretKey, const ByteFlow &byteFlow);
+
 private:
+    void addDataToCTX(const ByteArray &byteArray);
+
     StreebogContext *CTX;
     int digestSize;
 };

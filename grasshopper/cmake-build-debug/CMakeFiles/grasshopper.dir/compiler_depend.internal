@@ -509,6 +509,7 @@ CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o
  /home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-ref.h
  /home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-consts.h
  /home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-precalc.h
+ /home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteFlow.h
  /usr/include/err.h
  /usr/include/sysexits.h
 
@@ -769,6 +770,11 @@ CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o
  /usr/include/c++/12.1.0/bits/ranges_algo.h
  /usr/include/c++/12.1.0/bits/ranges_util.h
  /usr/include/c++/12.1.0/pstl/glue_algorithm_defs.h
+
+CMakeFiles/grasshopper.dir/crypto/util/ByteFlow.cpp.o
+ /home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteFlow.cpp
+ /usr/include/stdc-predef.h
+ /home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteFlow.h
 
 CMakeFiles/grasshopper.dir/main.cpp.o
  /home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/main.cpp
@@ -1041,4 +1047,5 @@ CMakeFiles/grasshopper.dir/main.cpp.o
  /home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-ref.h
  /home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-consts.h
  /home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-precalc.h
+ /home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteFlow.h
 

@@ -9,8 +9,7 @@
 class ByteArray {
 public:
     ByteArray() {
-        arrayPtr = new uint64_t[1];
-        capacity = 1;
+        capacity = 0;
         arraySize = 0;
     };
 
@@ -20,13 +19,9 @@ public:
 
     ByteArray(const ByteArray &other);
 
-
     ByteArray(std::size_t initial_size, uint8_t initial_value = 0);
 
-
-    ~ByteArray() {
-        delete[](arrayPtr);
-    }
+    ~ByteArray() = default;
 
     uint8_t &operator[](size_t index);
 
@@ -36,7 +31,7 @@ public:
 
     ByteArray& operator=(const ByteArray &source);
 
-//    void operator=(ByteArray &&other);
+    void operator=(ByteArray &&other);
 
     size_t size() const {
         return arraySize;
@@ -50,12 +45,12 @@ public:
 
     void copyArrayInterval(const ByteArray &byteArray, std::size_t beginIdx, std::size_t endIdx);
 
-    uint8_t *getArrayPtr() const {
-        return reinterpret_cast<uint8_t * const>(arrayPtr);
+    uint8_t *getArrayMemory() const {
+        return reinterpret_cast<uint8_t * const>(arrayPtr.get());
     }
 
 private:
-    uint64_t *arrayPtr;
+    std::shared_ptr<uint64_t[]> arrayPtr;
     size_t capacity{}; ///@details сколько uint64_t выделенно под хранение
     size_t arraySize{}; /// количество байт в массиве
 };

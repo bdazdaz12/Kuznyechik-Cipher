@@ -507,6 +507,7 @@ CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: ../crypto/streebo
   ../crypto/streebog/streebog-ref.h \
   ../crypto/streebog/streebog-consts.h \
   ../crypto/streebog/streebog-precalc.h \
+  ../crypto/util/ByteFlow.h \
   /usr/include/err.h \
   /usr/include/sysexits.h
 
@@ -766,6 +767,10 @@ CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o: ../crypto/util/ByteArray
   /usr/include/c++/12.1.0/bits/ranges_algo.h \
   /usr/include/c++/12.1.0/bits/ranges_util.h \
   /usr/include/c++/12.1.0/pstl/glue_algorithm_defs.h
+
+CMakeFiles/grasshopper.dir/crypto/util/ByteFlow.cpp.o: ../crypto/util/ByteFlow.cpp \
+  /usr/include/stdc-predef.h \
+  ../crypto/util/ByteFlow.h
 
 CMakeFiles/grasshopper.dir/main.cpp.o: ../main.cpp \
   /usr/include/stdc-predef.h \
@@ -1036,7 +1041,8 @@ CMakeFiles/grasshopper.dir/main.cpp.o: ../main.cpp \
   /usr/include/strings.h \
   ../crypto/streebog/streebog-ref.h \
   ../crypto/streebog/streebog-consts.h \
-  ../crypto/streebog/streebog-precalc.h
+  ../crypto/streebog/streebog-precalc.h \
+  ../crypto/util/ByteFlow.h
 
 
 /usr/include/c++/12.1.0/bits/parse_numbers.h:
@@ -1061,6 +1067,8 @@ CMakeFiles/grasshopper.dir/main.cpp.o: ../main.cpp \
 
 ../main.cpp:
 
+../crypto/util/ByteFlow.cpp:
+
 /usr/include/c++/12.1.0/bits/ranges_util.h:
 
 /usr/include/c++/12.1.0/bits/ranges_algo.h:
@@ -1072,6 +1080,8 @@ CMakeFiles/grasshopper.dir/main.cpp.o: ../main.cpp \
 /usr/include/memory.h:
 
 /usr/include/err.h:
+
+../crypto/util/ByteFlow.h:
 
 ../crypto/streebog/streebog-precalc.h:
 

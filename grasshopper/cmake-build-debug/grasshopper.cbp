@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/hmac/HMAC-constats.h">
+			<Option target="grasshopper"/>
+		</Unit>
 		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/CipherConstants.h">
 			<Option target="grasshopper"/>
 		</Unit>
@@ -119,6 +122,12 @@
 			<Option target="grasshopper"/>
 		</Unit>
 		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteArray.h">
+			<Option target="grasshopper"/>
+		</Unit>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteFlow.cpp">
+			<Option target="grasshopper"/>
+		</Unit>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteFlow.h">
 			<Option target="grasshopper"/>
 		</Unit>
 		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/main.cpp">

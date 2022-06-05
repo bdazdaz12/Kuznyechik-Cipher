@@ -16,16 +16,6 @@
 
 #define TEST_BLOCK_LEN 8192
 
-
-#define DEFAULT_DIGEST_SIZE 512
-#define ALGNAME "GOST R 34.11-2012"
-
-//static StreebogContext *CTX;
-
-//uint8_t digest[64];
-//unsigned char hexdigest[129];
-//unsigned int digest_size = DEFAULT_DIGEST_SIZE;
-
 const union uint512_u GOSTTestInput = {
 #ifndef __GOST3411_BIG_ENDIAN__
         {
@@ -76,8 +66,9 @@ void UpdateCTX(StreebogContext *CTX, const unsigned char *data, size_t len) {
 
     if (CTX->bufsize) {
         chunksize = 64 - CTX->bufsize;
-        if (chunksize > len)
+        if (chunksize > len) {
             chunksize = len;
+        }
 
         memcpy(&CTX->buffer[CTX->bufsize], data, chunksize);
 
@@ -87,7 +78,6 @@ void UpdateCTX(StreebogContext *CTX, const unsigned char *data, size_t len) {
 
         if (CTX->bufsize == 64) {
             stage2(CTX, CTX->buffer);
-
             CTX->bufsize = 0;
         }
     }
@@ -156,46 +146,17 @@ static void convert_to_hex(unsigned char *in, unsigned char *out, size_t len,
     }
 }
 
-/**
- * @arg digestSize - размер в битах считаемого хэша
-*/
-static uint8_t *calculateStringHash(StreebogContext *CTX, unsigned char *const string, unsigned int digestSize) {
-    uint8_t digest[64];
-
-    unsigned char *buf __attribute__((aligned(16)));
-    size_t size;
-
-    InitCTX(CTX, digestSize);
-
-    size = strnlen((const char *) string, (size_t) 4096);
-    buf = (unsigned char *) memalloc(size);
-    memcpy(buf, string, size);
-    {
-        UpdateCTX(CTX, buf, size);
-        FinalCTX(CTX, &digest[0]);
-        CleanupCTX(CTX);
-    }
-
-    auto *calculatedHash = new uint8_t[digestSize / 8];
-    memcpy(calculatedHash, digest, digestSize / 8);
-
-    return calculatedHash;
-}
-
-static uint8_t *calculateByteArrayHash(StreebogContext *CTX, const ByteArray &byteArray, unsigned int digestSize) {
-    uint8_t digest[64];
+std::shared_ptr<uint8_t[]> calculateByteArrayHash(
+        StreebogContext *CTX, const ByteArray &byteArray, unsigned int digestSize) {
+    std::shared_ptr<uint8_t[]> calculatedHashPtr(new uint8_t[digestSize / 8], std::default_delete<uint8_t[]>());
 
     InitCTX(CTX, digestSize);
     {
-        UpdateCTX(CTX, byteArray.getArrayPtr(), byteArray.size());
-        FinalCTX(CTX, &digest[0]);
+        UpdateCTX(CTX, byteArray.getArrayMemory(), byteArray.size());
+        FinalCTX(CTX, calculatedHashPtr.get());
         CleanupCTX(CTX);
     }
-
-    auto *calculatedHash = new uint8_t[digestSize / 8];
-    memcpy(calculatedHash, &digest[0], digestSize / 8);
-
-    return calculatedHash;
+    return calculatedHashPtr;
 }
 
 
@@ -217,12 +178,27 @@ int crypto_hash(unsigned char *out, const unsigned char *in, unsigned long long 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-std::uint8_t *StreebogHash::calculateHash(unsigned char *str) const {
-    return calculateStringHash(CTX, str, digestSize);
+std::shared_ptr<uint8_t[]> StreebogHash::calculateHash(unsigned char *str) const {
+    std::shared_ptr<uint8_t[]> calculatedHashPtr(new uint8_t[digestSize / 8], std::default_delete<uint8_t[]>());
+
+    unsigned char *buf __attribute__((aligned(16)));
+    size_t size;
+
+    InitCTX(CTX, digestSize);
+
+    size = strnlen((const char *) str, (size_t) 4096);
+    buf = (unsigned char *) memalloc(size);
+    memcpy(buf, str, size);
+    {
+        UpdateCTX(CTX, buf, size);
+        FinalCTX(CTX, calculatedHashPtr.get());
+        CleanupCTX(CTX);
+    }
+    return calculatedHashPtr;
 }
 
 
-std::string StreebogHash::convertToHex(std::uint8_t *digest) const {
+std::string StreebogHash::convertToHex(const std::shared_ptr<uint8_t[]> &ptr) const {
     unsigned int i;
     char ch[3];
     char hexdigest[129];
@@ -230,7 +206,7 @@ std::string StreebogHash::convertToHex(std::uint8_t *digest) const {
     memset(hexdigest, 0, 129);
 
     for (i = 0; i < digestSize / 8; i++) {
-        sprintf(ch, "%02x", (unsigned char) digest[i]);
+        sprintf(ch, "%02x", (unsigned char) ptr[i]);
         memcpy(&hexdigest[i * 2], ch, 2);
     }
 
@@ -238,8 +214,16 @@ std::string StreebogHash::convertToHex(std::uint8_t *digest) const {
     return ans;
 }
 
-std::uint8_t *StreebogHash::calculateHash(const ByteArray &in) const {
-    return calculateByteArrayHash(CTX, in, digestSize);
+std::shared_ptr<uint8_t[]> StreebogHash::calculateHash(const ByteArray &byteArray) const {
+    std::shared_ptr<uint8_t[]> calculatedHashPtr(new uint8_t[digestSize / 8], std::default_delete<uint8_t[]>());
+
+    InitCTX(CTX, digestSize);
+    {
+        UpdateCTX(CTX, byteArray.getArrayMemory(), byteArray.size());
+        FinalCTX(CTX, calculatedHashPtr.get());
+        CleanupCTX(CTX);
+    }
+    return calculatedHashPtr;
 }
 
 StreebogHash::StreebogHash(int digestSize) {
@@ -258,37 +242,39 @@ StreebogHash::~StreebogHash() {
     }
 }
 
-//std::uint8_t *StreebogHash::hashStr(const unsigned char *string) {
-//    auto *digest = new uint8_t[64];
-//    char hexdigest[129];
-//
-//    unsigned char *buf __attribute__((aligned(16)));
-//    size_t size;
-//
-//    InitCTX(CTX, digestSize);
-//
-//    size = strnlen((const char *) string, (size_t) 4096);
-//    buf = (unsigned char *) memalloc(size);
-//    memcpy(buf, string, size);
-//
-//    {
-//        UpdateCTX(CTX, buf, size);
-//        FinalCTX(CTX, &digest[0]);
-//        CleanupCTX(CTX);
-//    }
-//
-//
-//    if (digestSize == 256) {
-//        convert_to_hex(digest, reinterpret_cast<unsigned char *>(hexdigest), 32, 0);
-//    } else {
-//        convert_to_hex(digest, reinterpret_cast<unsigned char *>(hexdigest), 64, 0);
-//    }
-//
-//
-//    std::string str(hexdigest);
-//    printf("%s\n", hexdigest);
-//
-//    std::cout << std::endl << str;
-//
-//    return nullptr;
-//}
+ByteArray StreebogHash::calculateHMAC(const ByteArray &secretKey, const ByteFlow &byteFlow) {
+
+
+    std::shared_ptr<uint8_t[]> buffer;
+    std::size_t readCount;
+
+//    while()
+
+    return ByteArray();
+}
+
+void StreebogHash::addDataToCTX(const ByteArray &byteArray) {
+    UpdateCTX(CTX, byteArray.getArrayMemory(), byteArray.size());
+}
+
+std::shared_ptr<uint8_t[]> StreebogHash::calculateHash(FILE *file) const {
+    std::shared_ptr<uint8_t[]> calculatedHashPtr(new uint8_t[digestSize / 8], std::default_delete<uint8_t[]>());
+
+    uint8_t *buffer;
+    size_t readCount;
+
+    buffer = static_cast<uint8_t *>(memalloc((size_t) READ_BUFFER_SIZE));
+
+    while ((readCount = fread(buffer, (size_t) 1, (size_t) READ_BUFFER_SIZE, file))) {
+        UpdateCTX(CTX, buffer, readCount);
+    }
+
+    if (ferror(file)) {
+        err(EX_IOERR, nullptr);
+    }
+    free(buffer);
+
+    FinalCTX(CTX, calculatedHashPtr.get());
+
+    return calculatedHashPtr;
+}

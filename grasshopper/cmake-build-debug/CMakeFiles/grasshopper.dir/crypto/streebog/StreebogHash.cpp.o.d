@@ -186,4 +186,5 @@ CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: \
  /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-ref.h \
  /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-consts.h \
  /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-precalc.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/../util/ByteFlow.h \
  /usr/include/err.h /usr/include/sysexits.h

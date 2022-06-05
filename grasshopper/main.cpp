@@ -25,7 +25,7 @@ ByteArray hex_str_to_byte_arr(const std::string &hex_str) {
     int size = hex_str.size() / 2;
 
     ByteArray result(size);
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < hex_str.length() / 2; i++) {
         result[i] = from_hex_literal(hex_str[2 * i]) << 4;
         result[i] += from_hex_literal(hex_str[2 * i + 1]);
     }
@@ -79,18 +79,39 @@ void fill_file(const std::string &in_file_name) {
     }
 }
 
+
 int main(int argc, char **argv) {
 //    fill_file("in_file.txt");
 
+    std::string in_file_name = "in_file.txt";
+    FILE *in_file_ptr = std::fopen(in_file_name.c_str(), "rb");
+
+    StreebogHash streebogHash(512);
+    auto start = std::chrono::steady_clock::now();
+    streebogHash.calculateHash(in_file_ptr);
+    auto end = std::chrono::steady_clock::now();
+
+
+    auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    printf("Calculate HASH Time (sec): %lld\n", interval.count());
+    std::cout << "FILE SIZE: 500 MB" << std::endl;
+
+
 //    ByteArray secret_key = hex_str_to_byte_arr(
 //            "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
-
-
-    auto str = "012345678901234567890123456789012345678901234567890123456789012";
-    StreebogHash streebogHash(512);
-    std::cout << streebogHash.convertToHex(streebogHash.calculateHash((unsigned char *) str)) << std::endl;
-
-
+//
+//
+//    ByteArray in = hex_str_to_byte_arr("1122334455667700ffeeddccbbaa9988");
+//
+//    auto str = "012345678901234567890123456789012345678901234567890123456789012";
+//    StreebogHash streebogHash(256);
+//    std::cout << streebogHash.convertToHex(streebogHash.calculateHash((unsigned char *) str)) << std::endl;
+//    std::cout << streebogHash.convertToHex(streebogHash.calculateHash(in)) << std::endl;
+//    std::cout << streebogHash.convertToHex(streebogHash.calculateHash(secret_key)) << std::endl;
+//    std::cout << streebogHash.convertToHex(streebogHash.calculateHash((unsigned char *) str)) << std::endl;
+//
+//
+//    in.print();
 
 //    Kuznyechik kuznyechik_instance(secret_key);
 //
