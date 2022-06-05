@@ -97,48 +97,48 @@ CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/Kuznyechik.cpp" -o CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.s
 
-CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o: CMakeFiles/grasshopper.dir/flags.make
-CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o: ../crypto/kuznyechik/util/ByteArray.cpp
-CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o: CMakeFiles/grasshopper.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o -MF CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o.d -o CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o -c "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/ByteArray.cpp"
+CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o: CMakeFiles/grasshopper.dir/flags.make
+CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o: ../crypto/util/ByteArray.cpp
+CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o: CMakeFiles/grasshopper.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o -MF CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o.d -o CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o -c "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteArray.cpp"
 
-CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/ByteArray.cpp" > CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.i
+CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteArray.cpp" > CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.i
 
-CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/ByteArray.cpp" -o CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.s
+CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteArray.cpp" -o CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.s
 
-CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o: CMakeFiles/grasshopper.dir/flags.make
-CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o: ../crypto/\ streebog/StreebogHash.cpp
-CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o: CMakeFiles/grasshopper.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o -MF CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o.d -o CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o -c "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/StreebogHash.cpp"
+CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: CMakeFiles/grasshopper.dir/flags.make
+CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: ../crypto/streebog/StreebogHash.cpp
+CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: CMakeFiles/grasshopper.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o -MF CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o.d -o CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o -c "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/StreebogHash.cpp"
 
-CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/StreebogHash.cpp" > CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.i
+CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/StreebogHash.cpp" > CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.i
 
-CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/StreebogHash.cpp" -o CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.s
+CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/StreebogHash.cpp" -o CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.s
 
 # Object files for target grasshopper
 grasshopper_OBJECTS = \
 "CMakeFiles/grasshopper.dir/main.cpp.o" \
 "CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o" \
-"CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o" \
-"CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o"
+"CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o" \
+"CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o"
 
 # External object files for target grasshopper
 grasshopper_EXTERNAL_OBJECTS =
 
 grasshopper: CMakeFiles/grasshopper.dir/main.cpp.o
 grasshopper: CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o
-grasshopper: CMakeFiles/grasshopper.dir/crypto/kuznyechik/util/ByteArray.cpp.o
-grasshopper: CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o
+grasshopper: CMakeFiles/grasshopper.dir/crypto/util/ByteArray.cpp.o
+grasshopper: CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o
 grasshopper: CMakeFiles/grasshopper.dir/build.make
 grasshopper: CMakeFiles/grasshopper.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable grasshopper"

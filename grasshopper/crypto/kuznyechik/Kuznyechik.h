@@ -1,9 +1,9 @@
 #pragma once
 
 #include <vector>
-#include "util/ByteArray.h"
 #include "CipherConstants.h"
 #include "KuznyechickLUT.h"
+#include "../util/ByteArray.h"
 
 /*
  * @warning

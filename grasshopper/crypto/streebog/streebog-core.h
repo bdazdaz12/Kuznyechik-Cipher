@@ -51,19 +51,20 @@ void GOST34112012Init(GOST34112012Context *CTX, const unsigned int digest_size) 
     CTX->digest_size = digest_size;
 
     for (i = 0; i < 8; i++) {
-        if (digest_size == 256)
+        if (digest_size == 256) {
             CTX->h.QWORD[i] = 0x0101010101010101ULL;
-        else
+        } else {
             CTX->h.QWORD[i] = 0x00ULL;
+        }
     }
 }
 
 static inline void pad(GOST34112012Context *CTX) {
-    if (CTX->bufsize > 63)
+    if (CTX->bufsize > 63) {
         return;
+    }
 
-    memset(CTX->buffer + CTX->bufsize,
-           0x00, sizeof(CTX->buffer) - CTX->bufsize);
+    memset(CTX->buffer + CTX->bufsize,0x00, sizeof(CTX->buffer) - CTX->bufsize);
 
     CTX->buffer[CTX->bufsize] = 0x01;
 }
@@ -148,8 +149,7 @@ static void g(union uint512_u *h, const union uint512_u *N, const unsigned char 
 #endif
 }
 
-static inline void
-stage2(GOST34112012Context *CTX, const unsigned char *data) {
+static inline void stage2(GOST34112012Context *CTX, const unsigned char *data) {
     union uint512_u m;
 
     memcpy(&m, data, sizeof(m));
@@ -159,8 +159,7 @@ stage2(GOST34112012Context *CTX, const unsigned char *data) {
     add512(&(CTX->Sigma), &m, &(CTX->Sigma));
 }
 
-static inline void
-stage3(GOST34112012Context *CTX) {
+static inline void stage3(GOST34112012Context *CTX) {
     ALIGN(16) union uint512_u buf = {{0}};
 
 #ifndef __GOST3411_BIG_ENDIAN__
@@ -222,8 +221,9 @@ void GOST34112012Final(GOST34112012Context *CTX, unsigned char *digest) {
 
     CTX->bufsize = 0;
 
-    if (CTX->digest_size == 256)
+    if (CTX->digest_size == 256) {
         memcpy(digest, &(CTX->hash.QWORD[4]), 32);
-    else
+    } else {
         memcpy(digest, &(CTX->hash.QWORD[0]), 64);
+    }
 }

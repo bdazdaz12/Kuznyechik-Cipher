@@ -24,7 +24,7 @@
 #endif
 
 #define XLPS(x, y, data) { \
-    register unsigned long long r0, r1, r2, r3, r4, r5, r6, r7; \
+    unsigned long long r0, r1, r2, r3, r4, r5, r6, r7; \
     int _i; \
     \
     r0 = x->QWORD[0] ^ y->QWORD[0]; \

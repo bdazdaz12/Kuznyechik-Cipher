@@ -82,30 +82,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/StreebogHash.cpp">
-			<Option target="grasshopper"/>
-		</Unit>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/StreebogHash.h">
-			<Option target="grasshopper"/>
-		</Unit>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/streebog-config.h">
-			<Option target="grasshopper"/>
-		</Unit>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/streebog-consts.h">
-			<Option target="grasshopper"/>
-		</Unit>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/streebog-core.h">
-			<Option target="grasshopper"/>
-		</Unit>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/streebog-precalc.h">
-			<Option target="grasshopper"/>
-		</Unit>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/streebog-ref.h">
-			<Option target="grasshopper"/>
-		</Unit>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/ streebog/streebog.h">
-			<Option target="grasshopper"/>
-		</Unit>
 		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/CipherConstants.h">
 			<Option target="grasshopper"/>
 		</Unit>
@@ -118,10 +94,34 @@
 		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/Kuznyechik.h">
 			<Option target="grasshopper"/>
 		</Unit>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/ByteArray.cpp">
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/StreebogHash.cpp">
 			<Option target="grasshopper"/>
 		</Unit>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/ByteArray.h">
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/StreebogHash.h">
+			<Option target="grasshopper"/>
+		</Unit>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-config.h">
+			<Option target="grasshopper"/>
+		</Unit>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-consts.h">
+			<Option target="grasshopper"/>
+		</Unit>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-core.h">
+			<Option target="grasshopper"/>
+		</Unit>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-enter.h">
+			<Option target="grasshopper"/>
+		</Unit>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-precalc.h">
+			<Option target="grasshopper"/>
+		</Unit>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-ref.h">
+			<Option target="grasshopper"/>
+		</Unit>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteArray.cpp">
+			<Option target="grasshopper"/>
+		</Unit>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/util/ByteArray.h">
 			<Option target="grasshopper"/>
 		</Unit>
 		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/main.cpp">

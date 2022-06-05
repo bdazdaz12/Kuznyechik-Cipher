@@ -143,54 +143,54 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "crypto/kuznyechik/util/ByteArray.h",
+			"path" : "crypto/util/ByteArray.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "crypto/kuznyechik/util/ByteArray.cpp",
+			"path" : "crypto/util/ByteArray.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "crypto/ streebog/streebog.h",
+			"path" : "crypto/streebog/streebog-enter.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "crypto/ streebog/streebog-consts.h",
+			"path" : "crypto/streebog/streebog-consts.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "crypto/ streebog/streebog-core.h",
+			"path" : "crypto/streebog/streebog-core.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "crypto/ streebog/streebog-precalc.h",
+			"path" : "crypto/streebog/streebog-precalc.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "crypto/ streebog/streebog-ref.h",
+			"path" : "crypto/streebog/streebog-ref.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "crypto/ streebog/StreebogHash.cpp",
+			"path" : "crypto/streebog/StreebogHash.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "crypto/ streebog/StreebogHash.h",
+			"path" : "crypto/streebog/StreebogHash.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "crypto/ streebog/streebog-config.h",
+			"path" : "crypto/streebog/streebog-config.h",
 			"sourceGroupIndex" : 1
 		}
 	],

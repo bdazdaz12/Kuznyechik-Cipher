@@ -6,7 +6,7 @@
 
 #define S_TABLE_SIZE 256
 
-#include "util/ByteArray.h"
+#include "../util/ByteArray.h"
 
 const static uint16_t linear_transform_modulus = 0x1C3;
 

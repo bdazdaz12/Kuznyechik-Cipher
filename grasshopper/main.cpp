@@ -5,7 +5,7 @@
 #include <memory>
 
 #include "crypto/kuznyechik/Kuznyechik.h"
-#include "crypto/kuznyechik/util/ByteArray.h"
+#include "crypto/streebog/StreebogHash.h"
 
 inline uint8_t from_hex_literal(char symbol) { // не оч функция канечна
     if (isdigit(symbol)) {
@@ -68,23 +68,11 @@ void fill_file(const std::string &in_file_name) {
     }
 }
 
-int main() {
-    int i = 0x12345678;
-    char *p;
+int main(int argc, char **argv) {
+//    fill_file("in_file.txt");
 
-    p = (char *) &i;
-    if (*p == 0x78) {
-        std::cout << "__GOST3411_LITTLE_ENDIAN__";
-        return 0;
-    }
-    return 1;
-}
-
-//int main(int argc, char **argv) {
-////    fill_file("in_file.txt");
-//
-//    ByteArray secret_key = hex_str_to_byte_arr(
-//            "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
+    ByteArray secret_key = hex_str_to_byte_arr(
+            "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
 //
 //    std::cout << secret_key.size() << std::endl;
 //
@@ -99,30 +87,30 @@ int main() {
 //    auto end = std::chrono::steady_clock::now();
 //
 //    std::cout << byte_arr_to_hex(out);
+
 //
-////
-////    auto interval = std::chrono::duration_cast<std::chrono::seconds>(end - start);
-////    printf("Encryption Time: %lld\n", interval.count());
-////
-////
-//////    kuznyechik_instance.decrypt_file("out_file.txt", "out_file_1.txt");
+//    auto interval = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+//    printf("Encryption Time: %lld\n", interval.count());
 //
 //
+////    kuznyechik_instance.decrypt_file("out_file.txt", "out_file_1.txt");
+
+
+
+
+
+
+
+
+
+
+//    std::string str = "77fedcba98765432100123456789abcd";
+//    ByteArray in = hex_str_to_byte_arr(str);
+//    ByteArray out;
+////    kuznyechik_instance.encrypt_block(in, out);
+//    kuznyechik_instance.encrypt_block(in, in);
 //
+//    kuznyechik_instance.decrypt_block(in, in);
 //
-//
-//
-//
-//
-//
-//
-////    std::string str = "77fedcba98765432100123456789abcd";
-////    ByteArray in = hex_str_to_byte_arr(str);
-////    ByteArray out;
-//////    kuznyechik_instance.encrypt_block(in, out);
-////    kuznyechik_instance.encrypt_block(in, in);
-////
-////    kuznyechik_instance.decrypt_block(in, in);
-////
-////    std::cout << byte_arr_to_hex(in);
-//}
+//    std::cout << byte_arr_to_hex(in);
+}

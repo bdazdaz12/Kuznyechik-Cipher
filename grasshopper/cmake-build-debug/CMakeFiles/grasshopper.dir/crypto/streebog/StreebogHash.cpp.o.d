@@ -1,9 +1,6 @@
-CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o: \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/\ streebog/StreebogHash.cpp \
- /usr/include/stdc-predef.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/\ streebog/StreebogHash.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/\ streebog/streebog-enter.h \
- /usr/include/err.h /usr/include/features.h \
+CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o: \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/StreebogHash.cpp \
+ /usr/include/stdc-predef.h /usr/include/err.h /usr/include/features.h \
  /usr/include/features-time64.h /usr/include/bits/wordsize.h \
  /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
@@ -50,11 +47,11 @@ CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o: \
  /usr/include/bits/environments.h /usr/include/bits/confname.h \
  /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
  /usr/include/bits/unistd_ext.h /usr/include/linux/close_range.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/\ streebog/streebog-core.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/\ streebog/streebog-config.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/\ streebog/streebog-ref.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/\ streebog/streebog-consts.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/\ streebog/streebog-precalc.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-core.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-config.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-ref.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-consts.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/streebog-precalc.h \
  /usr/include/sys/resource.h /usr/include/bits/resource.h \
  /usr/include/bits/types/struct_rusage.h /usr/include/c++/12.1.0/ctime \
  /usr/include/time.h /usr/include/bits/time.h /usr/include/bits/timex.h \
@@ -158,7 +155,8 @@ CMakeFiles/grasshopper.dir/crypto/_streebog/StreebogHash.cpp.o: \
  /usr/include/c++/12.1.0/bits/atomic_timed_wait.h \
  /usr/include/c++/12.1.0/bits/this_thread_sleep.h /usr/include/sys/time.h \
  /usr/include/semaphore.h /usr/include/bits/semaphore.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/\ streebog/../util/ByteArray.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/StreebogHash.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/../util/ByteArray.h \
  /usr/include/c++/12.1.0/memory \
  /usr/include/c++/12.1.0/bits/stl_uninitialized.h \
  /usr/include/c++/12.1.0/bits/stl_tempbuf.h \

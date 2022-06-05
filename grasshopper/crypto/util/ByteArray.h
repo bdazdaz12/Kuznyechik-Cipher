@@ -50,6 +50,10 @@ public:
 
     void copyArrayInterval(const ByteArray &byteArray, std::size_t beginIdx, std::size_t endIdx);
 
+    uint8_t *getArrayPtr() const {
+        return reinterpret_cast<uint8_t * const>(arrayPtr);
+    }
+
 private:
     uint64_t *arrayPtr;
     size_t capacity{}; ///@details сколько uint64_t выделенно под хранение

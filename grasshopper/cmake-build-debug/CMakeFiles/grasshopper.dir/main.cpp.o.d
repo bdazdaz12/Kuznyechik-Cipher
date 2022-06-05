@@ -187,6 +187,7 @@ CMakeFiles/grasshopper.dir/main.cpp.o: \
  /usr/include/c++/12.1.0/vector /usr/include/c++/12.1.0/bits/stl_vector.h \
  /usr/include/c++/12.1.0/bits/stl_bvector.h \
  /usr/include/c++/12.1.0/bits/vector.tcc \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/ByteArray.h \
  /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/CipherConstants.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/KuznyechickLUT.h
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/../util/ByteArray.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/KuznyechickLUT.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/streebog/StreebogHash.h

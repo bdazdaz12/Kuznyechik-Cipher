@@ -1,14 +1,13 @@
+
 /**
  * @brief  GOST 34.11-2012 hash function with 512/256 bits digest.
  */
 
-#pragma once
-
 #include <err.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdint>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <sysexits.h>
 #include <unistd.h>
 
@@ -16,8 +15,9 @@
 
 /* For benchmarking */
 #include <sys/resource.h>
-#include <sys/time.h>
+#include <ctime>
 #include <sys/types.h>
+#include <semaphore>
 
 #define READ_BUFFER_SIZE 65536
 
@@ -32,7 +32,7 @@
 #define DEFAULT_DIGEST_SIZE 512
 #define ALGNAME "GOST R 34.11-2012"
 
-GOST34112012Context *CTX;
+static GOST34112012Context *CTX;
 
 uint8_t digest[64];
 unsigned char hexdigest[129];
@@ -70,7 +70,7 @@ static void *memalloc(const size_t size) {
 
     /* Ensure p is on a 64-bit boundary. */
     if (posix_memalign(&p, (size_t) 64, size)) {
-        err(EX_OSERR, NULL);
+        err(EX_OSERR, nullptr);
     }
     return p;
 }
@@ -116,7 +116,7 @@ static void onfile(FILE *file) {
         GOST34112012Update(CTX, buffer, len);
 
     if (ferror(file))
-        err(EX_IOERR, NULL);
+        err(EX_IOERR, nullptr);
 
     free(buffer);
 
@@ -137,6 +137,33 @@ static void onstring(const unsigned char *string) {
 
     GOST34112012Final(CTX, &digest[0]);
 
+}
+
+
+/**
+ * @arg digestSize - размер в битах считаемого хэша
+*/
+static uint8_t *calculateStringHash(unsigned char* const string, unsigned int digestSize) {
+    digest_size = digestSize;
+
+    unsigned char *buf __attribute__((aligned(16)));
+    size_t size;
+
+    GOST34112012Init(CTX, digest_size);
+
+    size = strnlen((const char *) string, (size_t) 4096);
+    buf = (unsigned char*) memalloc(size);
+    memcpy(buf, string, size);
+    {
+        GOST34112012Update(CTX, buf, size);
+        GOST34112012Final(CTX, &digest[0]);
+        GOST34112012Cleanup(CTX);
+    }
+
+    auto *calculatedHash = new uint8_t[digestSize / 8];
+    memcpy(calculatedHash, digest, digestSize / 8);
+
+    return calculatedHash;
 }
 
 static void testing(const unsigned int eflag) {
@@ -205,8 +232,8 @@ static void benchmark(const unsigned int eflag) {
     exit(EXIT_SUCCESS);
 }
 
-static void shutdown(void) {
-    if (CTX != NULL) {
+static void shutdown() {
+    if (CTX != nullptr) {
         GOST34112012Cleanup(CTX);
     }
 }
@@ -225,117 +252,151 @@ int crypto_hash(unsigned char *out, const unsigned char *in, unsigned long long 
 }
 #else
 
-int streebog(int argc, char *argv[]) {
-    int ch;
-    unsigned char uflag, qflag, rflag, eflag;
-    unsigned char excode;
-    FILE *f;
-
-    excode = EXIT_SUCCESS;
-    atexit(shutdown);
-
-    CTX = (GOST34112012Context*) memalloc(sizeof(GOST34112012Context));
-
-    qflag = 0;
-    rflag = 0;
-    uflag = 0;
-    eflag = 0;
-
-    while ((ch = getopt(argc, argv, "25bhvqrs:te")) != -1) {
-        switch (ch) {
-            case 'b': {
-                benchmark(eflag);
-                break;
-            }
-            case '2': {
-                digest_size = 256;
-                break;
-            }
-            case '5': {
-                digest_size = 512;
-                break;
-            }
-            case 'q': {
-                qflag = 1;
-                break;
-            }
-            case 's': {
-                onstring((unsigned char *) optarg);
-
-                if (digest_size == 256) {
-                    convert_to_hex(digest, hexdigest, 32, eflag);
-                } else {
-                    convert_to_hex(digest, hexdigest, 64, eflag);
-                }
-
-                if (qflag) {
-                    printf("%s\n", hexdigest);
-                } else if (rflag) {
-                    printf("%s \"%s\"\n", hexdigest, optarg);
-                } else {
-                    printf("%s (\"%s\") = %s\n", ALGNAME, optarg, hexdigest);
-                }
-                uflag = 1;
-                break;
-            }
-            case 'r': {
-                rflag = 1;
-                break;
-            }
-            case 't': {
-                testing(eflag);
-                break;
-            }
-            case 'e': {
-                eflag = 1;
-                break;
-            }
-        }
-    }
-
-    argc -= optind;
-    argv += optind;
-
-    if (*argv) {
-        do {
-            if ((f = fopen(*argv, "rb")) == NULL) {
-                warn("%s", *argv);
-                excode = EX_OSFILE;
-                continue;
-            }
-            onfile(f);
-            fclose(f);
-            uflag = 1;
-
-            if (digest_size == 256) {
-                convert_to_hex(digest, hexdigest, 32, eflag);
-            } else {
-                convert_to_hex(digest, hexdigest, 64, eflag);
-            }
-
-            if (qflag) {
-                printf("%s\n", hexdigest);
-            } else if (rflag) {
-                printf("%s \"%s\"\n", hexdigest, *argv);
-            } else {
-                printf("%s (%s) = %s\n", ALGNAME, *argv, hexdigest);
-            }
-        } while (*++argv);
-    } else if (!uflag) {
-        onfile(stdin);
-
-        if (digest_size == 256) {
-            convert_to_hex(digest, hexdigest, 32, eflag);
-        } else {
-            convert_to_hex(digest, hexdigest, 64, eflag);
-        }
-
-        printf("%s\n", hexdigest);
-
-        uflag = 1;
-    }
-
-    return excode;
-}
+//int streebog(int argc, char *argv[]) {
+//    int ch;
+//    unsigned char uflag, qflag, rflag, eflag;
+//    unsigned char excode;
+//    FILE *f;
+//
+//    excode = EXIT_SUCCESS;
+//    atexit(shutdown);
+//
+//    CTX = (GOST34112012Context*) memalloc(sizeof(GOST34112012Context));
+//
+//    qflag = 0;
+//    rflag = 0;
+//    uflag = 0;
+//    eflag = 0;
+//
+//    while ((ch = getopt(argc, argv, "25bhvqrs:te")) != -1) {
+//        switch (ch) {
+//            case 'b': {
+//                benchmark(eflag);
+//                break;
+//            }
+//            case '2': {
+//                digest_size = 256;
+//                break;
+//            }
+//            case '5': {
+//                digest_size = 512;
+//                break;
+//            }
+//            case 'q': {
+//                qflag = 1;
+//                break;
+//            }
+//            case 's': {
+//                onstring((unsigned char *) optarg);
+//
+//                if (digest_size == 256) {
+//                    convert_to_hex(digest, hexdigest, 32, eflag);
+//                } else {
+//                    convert_to_hex(digest, hexdigest, 64, eflag);
+//                }
+//
+//                if (qflag) {
+//                    printf("%s\n", hexdigest);
+//                } else if (rflag) {
+//                    printf("%s \"%s\"\n", hexdigest, optarg);
+//                } else {
+//                    printf("%s (\"%s\") = %s\n", ALGNAME, optarg, hexdigest);
+//                }
+//                uflag = 1;
+//                break;
+//            }
+//            case 'r': {
+//                rflag = 1;
+//                break;
+//            }
+//            case 't': {
+//                testing(eflag);
+//                break;
+//            }
+//            case 'e': {
+//                eflag = 1;
+//                break;
+//            }
+//        }
+//    }
+//
+//    argc -= optind;
+//    argv += optind;
+//
+//    if (*argv) {
+//        do {
+//            if ((f = fopen(*argv, "rb")) == nullptr) {
+//                warn("%s", *argv);
+//                excode = EX_OSFILE;
+//                continue;
+//            }
+//            onfile(f);
+//            fclose(f);
+//            uflag = 1;
+//
+//            if (digest_size == 256) {
+//                convert_to_hex(digest, hexdigest, 32, eflag);
+//            } else {
+//                convert_to_hex(digest, hexdigest, 64, eflag);
+//            }
+//
+//            if (qflag) {
+//                printf("%s\n", hexdigest);
+//            } else if (rflag) {
+//                printf("%s \"%s\"\n", hexdigest, *argv);
+//            } else {
+//                printf("%s (%s) = %s\n", ALGNAME, *argv, hexdigest);
+//            }
+//        } while (*++argv);
+//    } else if (!uflag) {
+//        onfile(stdin);
+//
+//        if (digest_size == 256) {
+//            convert_to_hex(digest, hexdigest, 32, eflag);
+//        } else {
+//            convert_to_hex(digest, hexdigest, 64, eflag);
+//        }
+//
+//        printf("%s\n", hexdigest);
+//
+//        uflag = 1;
+//    }
+//
+//    return excode;
+//}
 
 #endif
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+#include "StreebogHash.h"
+
+std::uint8_t *StreebogHash::calculateHash(unsigned char *str) const {
+    return calculateStringHash(str, digestSize);
+}
+
+
+std::string StreebogHash::convertToHex(std::uint8_t *digestSource) const {
+    unsigned int i;
+    char ch[3];
+    unsigned char hexdigest[129];
+
+    int digestLen = digestSize / 8;
+
+    memset(hexdigest, 0, 129);
+
+    /* eflag is set when little-endian output requested */
+//    if (eflag) reverse_order(digest, digestSize);
+
+    for (i = 0; i < digestSize; i++) {
+        sprintf(ch, "%02x", (unsigned char) digestSource[i]);
+        memcpy(&hexdigest[i * 2], ch, 2);
+    }
+
+    std::string ans = reinterpret_cast<const char *>(hexdigest);
+    return ans;
+}
+
+std::uint8_t *StreebogHash::calculateHash(const ByteArray &in) const {
+    return calculateStringHash(reinterpret_cast<unsigned char*>(in.getArrayPtr()), digestSize);
+}

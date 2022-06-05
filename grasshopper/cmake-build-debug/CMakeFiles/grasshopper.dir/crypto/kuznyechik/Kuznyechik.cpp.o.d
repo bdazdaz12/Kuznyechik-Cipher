@@ -129,7 +129,8 @@ CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o: \
  /usr/include/c++/12.1.0/bits/vector.tcc /usr/include/c++/12.1.0/cstring \
  /usr/include/string.h /usr/include/strings.h \
  /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/Kuznyechik.h \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/util/ByteArray.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/CipherConstants.h \
+ /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/../util/ByteArray.h \
  /usr/include/c++/12.1.0/memory \
  /usr/include/c++/12.1.0/bits/stl_tempbuf.h \
  /usr/include/c++/12.1.0/bits/stl_raw_storage_iter.h \
@@ -185,5 +186,4 @@ CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o: \
  /usr/include/c++/12.1.0/pstl/execution_defs.h \
  /usr/include/c++/12.1.0/iostream /usr/include/c++/12.1.0/istream \
  /usr/include/c++/12.1.0/bits/istream.tcc \
- /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/CipherConstants.h \
  /home/yevsyukof/Рабочий\ стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/KuznyechickLUT.h
