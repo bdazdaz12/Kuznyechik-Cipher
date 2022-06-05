@@ -6,25 +6,21 @@
 #include <iostream>
 
 ByteArray &ByteArray::operator=(const ByteArray &other) {
-//    if (this != &other) {
-//        delete[](arrayPtrStup);
-//        arrayPtrStup = new uint64_t[other.capacity];
-//        memcpy(arrayPtrStup, other.arrayPtrStup, other.size());
-//
-//        this->arraySize = other.arraySize;
-//        this->capacity = other.capacity;
-//    }
+    if (this != &other) {
+        this->arraySize = other.arraySize;
+        this->capacity = other.capacity;
+        arrayPtr = std::shared_ptr<uint64_t[]>(new uint64_t[other.capacity], std::default_delete<uint64_t[]>());
+        memcpy(arrayPtr.get(), other.arrayPtr.get(), other.size());
+    }
     return *this;
 }
 
 uint8_t &ByteArray::operator[](size_t index) {
     return reinterpret_cast<uint8_t *>(arrayPtr.get())[index];
-//    return reinterpret_cast<uint8_t *>(arrayPtrStup)[index];
 }
 
 uint8_t ByteArray::operator[](size_t index) const {
-//    return reinterpret_cast<uint8_t *>(arrayPtrStup)[index];
-    return 1;
+    return reinterpret_cast<uint8_t *>(arrayPtr.get())[index];
 }
 
 
@@ -35,22 +31,15 @@ void ByteArray::operator^=(const ByteArray &other) {
 }
 
 void swap(ByteArray &lhs, ByteArray &rhs) {
-    swap(lhs.arrayPtr, rhs.arrayPtr);
-
-    std::size_t tmp1 = rhs.capacity;
-    rhs.capacity = lhs.capacity;
-    lhs.capacity = tmp1;
-
-    std::size_t tmp2 = rhs.arraySize;
-    rhs.arraySize = lhs.arraySize;
-    lhs.arraySize = tmp2;
+    std::swap(lhs.arrayPtr, rhs.arrayPtr);
+    std::swap(lhs.capacity, rhs.capacity);
+    std::swap(lhs.arraySize, rhs.arraySize);
 }
 
-ByteArray::ByteArray(std::size_t initial_size, uint8_t initial_value) {
+ByteArray::ByteArray(std::size_t initial_size, std::uint8_t initial_value) {
     arraySize = initial_size;
     capacity = arraySize / 8 + (arraySize % 8 == 0 ? 0 : 1);
     arrayPtr = std::shared_ptr<uint64_t[]>(new uint64_t[capacity], std::default_delete<uint64_t[]>());
-
     memset(arrayPtr.get(), initial_value, initial_size);
 }
 
@@ -82,7 +71,6 @@ void ByteArray::copyArrayInterval(const ByteArray &byteArray, std::size_t beginI
     capacity = arraySize / 8 + arraySize % 8 == 0 ? 0 : 1;
 
     arrayPtr = std::shared_ptr<uint64_t[]>(new uint64_t[capacity], std::default_delete<uint64_t[]>());
-
     memcpy(this->arrayPtr.get(), byteArray.arrayPtr.get(), arraySize);
 }
 
@@ -96,7 +84,7 @@ ByteArray::ByteArray(const ByteArray &&other) {
 ByteArray::ByteArray(const ByteArray &other) {
     this->arraySize = other.arraySize;
     this->capacity = other.capacity;
-    arrayPtr = std::shared_ptr<uint64_t[]>(new uint64_t[capacity], std::default_delete<uint64_t[]>());
+    this->arrayPtr = std::shared_ptr<uint64_t[]>(new uint64_t[capacity], std::default_delete<uint64_t[]>());
     memcpy(this->arrayPtr.get(), other.arrayPtr.get(), other.size());
 }
 
@@ -107,5 +95,22 @@ void ByteArray::operator=(ByteArray &&other) {
         this->capacity = other.capacity;
     }
 }
+
+ByteArray::ByteArray(const std::shared_ptr<uint8_t[]> &byteArrayPtr, std::size_t arraySize) {
+    this->arraySize = arraySize;
+    capacity = arraySize / 8 + (arraySize % 8 == 0 ? 0 : 1);
+    arrayPtr = std::shared_ptr<uint64_t[]>(new uint64_t[capacity], std::default_delete<uint64_t[]>());
+    memcpy(arrayPtr.get(), byteArrayPtr.get(), arraySize);
+}
+
+ByteArray ByteArray::operator^(const ByteArray &rhs) {
+    ByteArray resultArray(this->size() > rhs.size()? *this : rhs);
+
+    for (int i = 0; i < std::min(this->capacity, rhs.capacity); ++i) {
+        resultArray.arrayPtr[i] = this->arrayPtr[i] ^ rhs.arrayPtr[i];
+    }
+    return resultArray;
+}
+
 
 

@@ -129,6 +129,30 @@ grasshopper/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/build
 .PHONY : grasshopper/fast
 
+crypto/hmac/HmacGenerator.o: crypto/hmac/HmacGenerator.cpp.o
+.PHONY : crypto/hmac/HmacGenerator.o
+
+# target to build an object file
+crypto/hmac/HmacGenerator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/hmac/HmacGenerator.cpp.o
+.PHONY : crypto/hmac/HmacGenerator.cpp.o
+
+crypto/hmac/HmacGenerator.i: crypto/hmac/HmacGenerator.cpp.i
+.PHONY : crypto/hmac/HmacGenerator.i
+
+# target to preprocess a source file
+crypto/hmac/HmacGenerator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/hmac/HmacGenerator.cpp.i
+.PHONY : crypto/hmac/HmacGenerator.cpp.i
+
+crypto/hmac/HmacGenerator.s: crypto/hmac/HmacGenerator.cpp.s
+.PHONY : crypto/hmac/HmacGenerator.s
+
+# target to generate assembly for a file
+crypto/hmac/HmacGenerator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/grasshopper.dir/build.make CMakeFiles/grasshopper.dir/crypto/hmac/HmacGenerator.cpp.s
+.PHONY : crypto/hmac/HmacGenerator.cpp.s
+
 crypto/kuznyechik/Kuznyechik.o: crypto/kuznyechik/Kuznyechik.cpp.o
 .PHONY : crypto/kuznyechik/Kuznyechik.o
 
@@ -258,6 +282,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... grasshopper"
+	@echo "... crypto/hmac/HmacGenerator.o"
+	@echo "... crypto/hmac/HmacGenerator.i"
+	@echo "... crypto/hmac/HmacGenerator.s"
 	@echo "... crypto/kuznyechik/Kuznyechik.o"
 	@echo "... crypto/kuznyechik/Kuznyechik.i"
 	@echo "... crypto/kuznyechik/Kuznyechik.s"

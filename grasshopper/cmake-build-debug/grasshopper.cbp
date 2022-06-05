@@ -82,7 +82,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/hmac/HMAC-constats.h">
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/hmac/HmacGenerator.cpp">
+			<Option target="grasshopper"/>
+		</Unit>
+		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/hmac/HmacGenerator.h">
 			<Option target="grasshopper"/>
 		</Unit>
 		<Unit filename="/home/yevsyukof/Рабочий стол/Kuznyechik-Cipher/grasshopper/crypto/kuznyechik/CipherConstants.h">

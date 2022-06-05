@@ -4,7 +4,7 @@
 Look-up table for Kuznyechik cipher
 */
 
-constexpr uint64_t LS_table[16][256][2] = {
+static uint64_t LS_table[16][256][2] = {
         {
                 {0x191187931bc9aeb5, 0xe9fbd50c7ac08096}, {0x7b32fcabf8fef20a, 0x1908e08cb2171ace},
                 {0xc0bdcaef4e88c789, 0xbfcbd0a250b2dc77}, {0x69c4123cd39313c0, 0x6241101a5e6342d6},

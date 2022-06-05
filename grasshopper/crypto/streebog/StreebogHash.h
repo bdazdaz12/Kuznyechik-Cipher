@@ -25,18 +25,12 @@ public:
     int getDigestSize() const {
         return digestSize;
     }
+    void addDataToCTX(const std::shared_ptr<uint8_t[]> &byteArray, std::size_t arraySize);
 
-
-    /**
-     * @arg secretKey - это K из описания HMAC
-    */
-    ByteArray calculateHMAC(const ByteArray &secretKey, const std::string &text);
-
-    ByteArray calculateHMAC(const ByteArray &secretKey, const ByteFlow &byteFlow);
-
-private:
     void addDataToCTX(const ByteArray &byteArray);
 
+    std::shared_ptr<uint8_t[]> finalize();
+private:
     StreebogContext *CTX;
     int digestSize;
 };

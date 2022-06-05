@@ -6,6 +6,7 @@
 
 #include "crypto/kuznyechik/Kuznyechik.h"
 #include "crypto/streebog/StreebogHash.h"
+#include "crypto/hmac/HmacGenerator.h"
 
 inline uint8_t from_hex_literal(char symbol) { // не оч функция канечна
     if (isdigit(symbol)) {
@@ -83,24 +84,25 @@ void fill_file(const std::string &in_file_name) {
 int main(int argc, char **argv) {
 //    fill_file("in_file.txt");
 
+    ByteArray secret_key = hex_str_to_byte_arr(
+            "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
+
     std::string in_file_name = "in_file.txt";
     FILE *in_file_ptr = std::fopen(in_file_name.c_str(), "rb");
 
-    StreebogHash streebogHash(512);
+    HmacGenerator hmacGenerator;
+
+    StreebogHash streebogHash(256);
     auto start = std::chrono::steady_clock::now();
-    streebogHash.calculateHash(in_file_ptr);
+    auto res = hmacGenerator.calculateHMAC(secret_key, in_file_ptr, 256);
     auto end = std::chrono::steady_clock::now();
 
-
     auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-    printf("Calculate HASH Time (sec): %lld\n", interval.count());
+    printf("Calculate HASH Time (millisec): %lld\n", interval.count());
     std::cout << "FILE SIZE: 500 MB" << std::endl;
 
+    std::cout << streebogHash.convertToHex(res);
 
-//    ByteArray secret_key = hex_str_to_byte_arr(
-//            "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
-//
-//
 //    ByteArray in = hex_str_to_byte_arr("1122334455667700ffeeddccbbaa9988");
 //
 //    auto str = "012345678901234567890123456789012345678901234567890123456789012";
@@ -109,38 +111,23 @@ int main(int argc, char **argv) {
 //    std::cout << streebogHash.convertToHex(streebogHash.calculateHash(in)) << std::endl;
 //    std::cout << streebogHash.convertToHex(streebogHash.calculateHash(secret_key)) << std::endl;
 //    std::cout << streebogHash.convertToHex(streebogHash.calculateHash((unsigned char *) str)) << std::endl;
-//
-//
-//    in.print();
 
+
+//    ByteArray secret_key = hex_str_to_byte_arr(
+//            "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef");
 //    Kuznyechik kuznyechik_instance(secret_key);
 //
 //    ByteArray in = hex_str_to_byte_arr("1122334455667700ffeeddccbbaa9988");
 //    in.print();
 //    ByteArray out;
 //
-//    auto start = std::chrono::steady_clock::now();
+////    auto start = std::chrono::steady_clock::now();
 //    kuznyechik_instance.encrypt_block(in, out);
-//    auto end = std::chrono::steady_clock::now();
-//
+////    auto end = std::chrono::steady_clock::now();
+////
 //    std::cout << byte_arr_to_hex(out);
 
 //
 //    auto interval = std::chrono::duration_cast<std::chrono::seconds>(end - start);
 //    printf("Encryption Time: %lld\n", interval.count());
-//
-//
-////    kuznyechik_instance.decrypt_file("out_file.txt", "out_file_1.txt");
-
-
-
-//    std::string str = "77fedcba98765432100123456789abcd";
-//    ByteArray in = hex_str_to_byte_arr(str);
-//    ByteArray out;
-////    kuznyechik_instance.encrypt_block(in, out);
-//    kuznyechik_instance.encrypt_block(in, in);
-//
-//    kuznyechik_instance.decrypt_block(in, in);
-//
-//    std::cout << byte_arr_to_hex(in);
 }

@@ -42,11 +42,7 @@ const union uint512_u GOSTTestInput = {
 #endif
 };
 
-void CleanupCTX(StreebogContext *CTX) {
-    memset(CTX, 0x00, sizeof(StreebogContext));
-}
-
-void InitCTX(StreebogContext *CTX, const unsigned int digest_size) {
+void CleanCTX(StreebogContext *CTX, const unsigned int digest_size) {
     unsigned int i;
 
     memset(CTX, 0x00, sizeof(StreebogContext));
@@ -150,11 +146,11 @@ std::shared_ptr<uint8_t[]> calculateByteArrayHash(
         StreebogContext *CTX, const ByteArray &byteArray, unsigned int digestSize) {
     std::shared_ptr<uint8_t[]> calculatedHashPtr(new uint8_t[digestSize / 8], std::default_delete<uint8_t[]>());
 
-    InitCTX(CTX, digestSize);
+//    CleanCTX(CTX, digestSize);
     {
-        UpdateCTX(CTX, byteArray.getArrayMemory(), byteArray.size());
+        UpdateCTX(CTX, byteArray.getBytes(), byteArray.size());
         FinalCTX(CTX, calculatedHashPtr.get());
-        CleanupCTX(CTX);
+        CleanCTX(CTX, digestSize);
     }
     return calculatedHashPtr;
 }
@@ -184,7 +180,7 @@ std::shared_ptr<uint8_t[]> StreebogHash::calculateHash(unsigned char *str) const
     unsigned char *buf __attribute__((aligned(16)));
     size_t size;
 
-    InitCTX(CTX, digestSize);
+//    CleanCTX(CTX, digestSize);
 
     size = strnlen((const char *) str, (size_t) 4096);
     buf = (unsigned char *) memalloc(size);
@@ -192,7 +188,7 @@ std::shared_ptr<uint8_t[]> StreebogHash::calculateHash(unsigned char *str) const
     {
         UpdateCTX(CTX, buf, size);
         FinalCTX(CTX, calculatedHashPtr.get());
-        CleanupCTX(CTX);
+        CleanCTX(CTX, digestSize);
     }
     return calculatedHashPtr;
 }
@@ -217,11 +213,11 @@ std::string StreebogHash::convertToHex(const std::shared_ptr<uint8_t[]> &ptr) co
 std::shared_ptr<uint8_t[]> StreebogHash::calculateHash(const ByteArray &byteArray) const {
     std::shared_ptr<uint8_t[]> calculatedHashPtr(new uint8_t[digestSize / 8], std::default_delete<uint8_t[]>());
 
-    InitCTX(CTX, digestSize);
+//    CleanCTX(CTX, digestSize);
     {
-        UpdateCTX(CTX, byteArray.getArrayMemory(), byteArray.size());
+        UpdateCTX(CTX, byteArray.getBytes(), byteArray.size());
         FinalCTX(CTX, calculatedHashPtr.get());
-        CleanupCTX(CTX);
+        CleanCTX(CTX, digestSize);
     }
     return calculatedHashPtr;
 }
@@ -231,30 +227,17 @@ StreebogHash::StreebogHash(int digestSize) {
         std::cerr << "Streebog: задан недопустимый размер дайджеста" << std::endl;
         exit(1);
     }
-
     this->CTX = (GOST34112012Context *) memalloc(sizeof(GOST34112012Context));
     this->digestSize = digestSize;
+    CleanCTX(CTX, digestSize);
 }
 
 StreebogHash::~StreebogHash() {
-    if (CTX != nullptr) {
-        CleanupCTX(CTX);
-    }
-}
-
-ByteArray StreebogHash::calculateHMAC(const ByteArray &secretKey, const ByteFlow &byteFlow) {
-
-
-    std::shared_ptr<uint8_t[]> buffer;
-    std::size_t readCount;
-
-//    while()
-
-    return ByteArray();
+    free(CTX);
 }
 
 void StreebogHash::addDataToCTX(const ByteArray &byteArray) {
-    UpdateCTX(CTX, byteArray.getArrayMemory(), byteArray.size());
+    UpdateCTX(CTX, byteArray.getBytes(), byteArray.size());
 }
 
 std::shared_ptr<uint8_t[]> StreebogHash::calculateHash(FILE *file) const {
@@ -275,6 +258,18 @@ std::shared_ptr<uint8_t[]> StreebogHash::calculateHash(FILE *file) const {
     free(buffer);
 
     FinalCTX(CTX, calculatedHashPtr.get());
+    CleanCTX(CTX, digestSize);
 
+    return calculatedHashPtr;
+}
+
+void StreebogHash::addDataToCTX(const std::shared_ptr<uint8_t[]> &byteArray, std::size_t arraySize) {
+    UpdateCTX(CTX, byteArray.get(), arraySize);
+}
+
+std::shared_ptr<uint8_t[]> StreebogHash::finalize() {
+    std::shared_ptr<uint8_t[]> calculatedHashPtr(new uint8_t[digestSize / 8], std::default_delete<uint8_t[]>());
+    FinalCTX(CTX, calculatedHashPtr.get());
+    CleanCTX(CTX, digestSize);
     return calculatedHashPtr;
 }

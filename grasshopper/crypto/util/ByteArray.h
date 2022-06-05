@@ -15,6 +15,8 @@ public:
 
     ByteArray(const std::vector<uint64_t> &&v);
 
+    ByteArray(const std::shared_ptr<uint8_t[]> &byteArrayPtr, std::size_t arraySize);
+
     ByteArray(const ByteArray &&other);
 
     ByteArray(const ByteArray &other);
@@ -33,6 +35,8 @@ public:
 
     void operator=(ByteArray &&other);
 
+    ByteArray operator^(const ByteArray &rhs);
+
     size_t size() const {
         return arraySize;
     }
@@ -45,8 +49,16 @@ public:
 
     void copyArrayInterval(const ByteArray &byteArray, std::size_t beginIdx, std::size_t endIdx);
 
-    uint8_t *getArrayMemory() const {
-        return reinterpret_cast<uint8_t * const>(arrayPtr.get());
+    const uint8_t * getBytes() const {
+        return reinterpret_cast<const uint8_t * const>(arrayPtr.get());
+    }
+
+    const uint64_t *getQwords() const {
+        return reinterpret_cast<const uint64_t * const>(arrayPtr.get());
+    }
+
+    uint64_t *getMemoryPtr() {
+        return arrayPtr.get();
     }
 
 private:

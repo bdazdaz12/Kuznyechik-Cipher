@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/grasshopper.dir/crypto/hmac/HmacGenerator.cpp.o"
+  "CMakeFiles/grasshopper.dir/crypto/hmac/HmacGenerator.cpp.o.d"
   "CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o"
   "CMakeFiles/grasshopper.dir/crypto/kuznyechik/Kuznyechik.cpp.o.d"
   "CMakeFiles/grasshopper.dir/crypto/streebog/StreebogHash.cpp.o"
